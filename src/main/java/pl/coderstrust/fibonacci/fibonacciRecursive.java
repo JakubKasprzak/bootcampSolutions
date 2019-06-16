@@ -1,6 +1,6 @@
 package pl.coderstrust.fibonacci;
 
-public class fibonacciRecursive {
+public class FibonacciRecursive {
 
     public static void main(String[] args) {
         System.out.println(fibonacci(11));
@@ -11,14 +11,14 @@ public class fibonacciRecursive {
             throw new IllegalArgumentException("fibonacciNumberInOrder must be positive");
         }
 
-        return fibonacciRec(fibonacciNumberInOrder);
+        return fibonacciRecursive(fibonacciNumberInOrder);
     }
 
-    private static long fibonacciRec(int fibonacciNumberInOrder) {
+    private static long fibonacciRecursive(int fibonacciNumberInOrder) {
         if (fibonacciNumberInOrder <= 1) {
             return fibonacciNumberInOrder;
         }
 
-        return fibonacciRec(fibonacciNumberInOrder - 2) + fibonacciRec(fibonacciNumberInOrder - 1);
+        return fibonacciRecursive(fibonacciNumberInOrder - 2) + fibonacciRecursive(fibonacciNumberInOrder - 1);
     }
 }
