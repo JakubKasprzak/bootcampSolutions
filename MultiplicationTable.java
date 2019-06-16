@@ -12,10 +12,10 @@ public class MultiplicationTable {
             System.out.printf("%4d", i);
         }
         System.out.println();
-        for (int a = 1; a <= tablesize; a++) {
-            System.out.printf("%4d", a);
-            for (int b = 1; b <= tablesize; b++) {
-                System.out.printf("%4d", a * b);
+        for (int i = 1; i <= tablesize; i++) {
+            System.out.printf("%4d", i);
+            for (int j = 1; j <= tablesize; j++) {
+                System.out.printf("%4d", i * j);
             }
             System.out.println();
         }
