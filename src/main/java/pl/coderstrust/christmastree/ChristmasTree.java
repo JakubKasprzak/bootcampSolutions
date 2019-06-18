@@ -3,12 +3,12 @@ package pl.coderstrust.christmastree;
 public class ChristmasTree {
 
     public static void main(String[] args) {
-        printTree(10);
+        printTree(-1);
     }
 
     public static void printTree(int treesize) {
         if (treesize < 0) {
-            return;
+            throw new IllegalArgumentException("treesize must be greater than zero");
         }
 
         for (int i = 1; i <= treesize; i++) {
@@ -21,7 +21,7 @@ public class ChristmasTree {
             }
         }
         System.out.println();
-        for (int l = (2 * treesize - 1) / 2 - 1; l > 0; l--) {
+        for (int i = 0; i < treesize - 1; i++) {
             System.out.print(" ");
         }
         System.out.println("**");
