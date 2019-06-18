@@ -4,12 +4,12 @@ public class PascalTriangle {
 
     public static void main(String[] args) {
         int treesize = 12;
-        printtree(treesize);
+        printPascalTriangle(treesize);
     }
 
-    public static void printtree(int treesize) {
-        for (int n = 0; n <= treesize; n++) {
-            for (int i = treesize - n; i > 0; i--) {
+    public static void printPascalTriangle(int size) {
+        for (int n = 0; n <= size; n++) {
+            for (int i = size - n; i > 0; i--) {
                 System.out.printf("%2s", "");
             }
             for (int k = 0; k <= n; k++) {
