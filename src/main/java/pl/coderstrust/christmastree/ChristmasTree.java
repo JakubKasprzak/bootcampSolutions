@@ -1,9 +1,9 @@
-package pl.coderstrust.christmas;
+package pl.coderstrust.christmastree;
 
 public class ChristmasTree {
 
     public static void main(String[] args) {
-        printTree(-1);
+        printTree(10);
     }
 
     public static void printTree(int treesize) {
