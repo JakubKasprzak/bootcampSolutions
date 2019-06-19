@@ -9,7 +9,7 @@ public class FooBar {
         System.out.println(Arrays.toString(createFooBar(100)));
     }
 
-    private static String[] createFooBar(int n) {
+    public static String[] createFooBar(int n) {
         String[] foobar = new String[n + 1];
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i <= n; i++) {
