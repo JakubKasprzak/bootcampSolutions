@@ -6,27 +6,31 @@ public class SelectionSort {
 
     public static void main(String[] args) {
         int numbers[] = {64, 34, 25, 12, 22, 11, 90};
-        selectionSort(numbers);
+        sort(numbers);
         System.out.println(Arrays.toString(numbers));
     }
 
-    public static void selectionSort(int[] numbers) {
-        int n = numbers.length;
+    public static int[] sort(int[] array) {
+        int n = array.length;
+        if (n == 0 ) {
+            throw new IllegalArgumentException("array must be filled with at least one number");
+        }
+
         for (int i = 0; i < n - 1; i++) {
-            int min = i;
-            System.out.println(Arrays.toString(numbers));
+            int minimalValueIndex = i;
             for (int j = i + 1; j < n; j++) {
-                if (numbers[j] < numbers[min]) {
-                    min = j;
+                if (array[j] < array[minimalValueIndex]) {
+                    minimalValueIndex = j;
                 }
             }
-            swap(numbers, min, i);
+            swap(array, minimalValueIndex, i);
         }
+        return array;
     }
 
-    private static void swap(int[] numbers, int a, int b) {
-        int temp = numbers[b];
-        numbers[b] = numbers[a];
-        numbers[a] = temp;
+    private static void swap(int[] array, int a, int b) {
+        int temp = array[b];
+        array[b] = array[a];
+        array[a] = temp;
     }
 }
