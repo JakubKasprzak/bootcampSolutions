@@ -5,44 +5,53 @@ import java.util.Arrays;
 public class SieveOfEratosthenes {
 
     public static void main(String[] args) {
-        int[] allNumbers = sieve(12);
-        int numberOfZeros = countZeros(allNumbers);
-        System.out.println(Arrays.toString(filteredPrimes(allNumbers, allNumbers.length - numberOfZeros)));
+        System.out.println(Arrays.toString(sieve(121)));
     }
 
     private static int[] sieve(int maximumNumber) {
-        int[] allNumbers = new int[maximumNumber];
-        for (int i = 0; i < maximumNumber; i++) {
-            allNumbers[i] = i + 1;
+        if (maximumNumber < 2) {
+            return new int[0];
         }
-        return allNumbers;
+        int[] array = createInitialArray(maximumNumber);
+        int countOfNonPrimeNumbers = markNonePrimeNumbers(array);
+        int countOfPrimeNumbers = array.length - countOfNonPrimeNumbers;
+        return extractPrimeNumbers(array, countOfPrimeNumbers);
     }
 
-    private static int countZeros(int[] allNumbers) {
-        allNumbers[0] = 0;
-        int numberOfZeros = 1;
 
-        for (int j = 2; j * j <= allNumbers.length; j++) {
-            if (allNumbers[j - 1] != 0) {
-                for (int i = j + j; i <= allNumbers.length; i += j) {
-                    if (allNumbers[i - 1] != 0) {
-                        allNumbers[i - 1] = 0;
-                        numberOfZeros++;
+    private static int[] createInitialArray(int size) {
+        int[] array = new int[size];
+        for (int i = 2; i < size; i++) {
+
+            array[i] = i + 1;
+        }
+        return array;
+    }
+
+    private static int markNonePrimeNumbers(int[] array) {
+        int numberOfNonPrimeNumbers = 2;
+
+        for (int j = 2; j <= array.length; j++) {
+            if (array[j - 1] != 0) {
+                for (int i = j + j; i <= array.length; i += j) {
+                    if (array[i - 1] != 0) {
+                        array[i - 1] = 0;
+                        numberOfNonPrimeNumbers++;
                     }
                 }
             }
         }
-        return numberOfZeros;
+        return numberOfNonPrimeNumbers;
     }
 
-    private static int[] filteredPrimes(int[] filteredNumbers, int n) {
-        int[] onlyPrimes = new int[n];
-        for (int i = 0, j = 0; i < filteredNumbers.length; i++) {
-            if (filteredNumbers[i] != 0) {
-                onlyPrimes[j] = filteredNumbers[i];
+    private static int[] extractPrimeNumbers(int[] array, int countOfPrimeNumbers) {
+        int[] onlyPrimeNumbers = new int[countOfPrimeNumbers];
+        for (int i = 0, j = 0; i < array.length; i++) {
+            if (array[i] != 0) {
+                onlyPrimeNumbers[j] = array[i];
                 j += 1;
             }
         }
-        return onlyPrimes;
+        return onlyPrimeNumbers;
     }
 }
