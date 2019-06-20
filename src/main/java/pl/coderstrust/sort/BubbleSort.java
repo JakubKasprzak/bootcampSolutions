@@ -6,18 +6,16 @@ public class BubbleSort {
 
     public static void main(String[] args) {
         int numbers[] = {64, 34, 25, 12, 22, 11, 90};
-        sort(numbers);
-        System.out.println(Arrays.toString(numbers));
+        System.out.println(Arrays.toString(sort(numbers)));
     }
 
     public static int[] sort(int[] array) {
-        int n = array.length;
-        if (n == 0 ) {
-            throw new IllegalArgumentException("array must be filled with at least one number");
+        if (array == null) {
+            throw new IllegalArgumentException("Array cannot be null");
         }
 
-        for (int i = 0; i < n - 1; i++) {
-            for (int j = 0; j < n - i - 1; j++) {
+        for (int i = 0; i < array.length - 1; i++) {
+            for (int j = 0; j < array.length - i - 1; j++) {
                 if (array[j] > array[j + 1]) {
                     swap(array, j, j + 1);
                 }
