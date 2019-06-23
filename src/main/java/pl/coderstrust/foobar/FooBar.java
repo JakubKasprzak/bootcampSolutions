@@ -6,15 +6,17 @@ public class FooBar {
 
     public static void main(String[] args) {
 
-        System.out.println(Arrays.toString(createFooBar(100)));
+        System.out.println(Arrays.toString(getFooBar(100)));
     }
 
-    public static String[] createFooBar(int n) {
-        String[] foobar = new String[n + 1];
+    public static String[] getFooBar(int number) {
+        if (number < 1) {
+            throw new IllegalArgumentException("Number must be greater than 0");
+        }
+        String[] foobar = new String[number + 1];
         StringBuilder builder = new StringBuilder();
-        for (int i = 0; i <= n; i++) {
-            String j = Integer.toString(i);
-            builder.append(j).append(" ");
+        for (int i = 0; i <= number; i++) {
+            builder.append(i).append(" ");
             if (i % 3 == 0) {
                 builder.append("Foo");
             }
