@@ -2,8 +2,7 @@ package pl.coderstrust.foobar;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class FooBarTest {
 
@@ -20,20 +19,12 @@ public class FooBarTest {
         assertArrayEquals(expected, result);
     }
 
-//    @Rule
-//    public ExpectedException thrown = ExpectedException.none();
-
     @Test
     public void shouldReturnIllegalArgumentException() {
-        int number = -1;
-        assertThrows(IllegalArgumentException.class, () -> {
+        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> {
             FooBar.getFooBar(-1);
         });
 
-
-//        thrown.expect(IllegalArgumentException.class);
-//        thrown.expectMessage("Number must be greater than 0");
-//        FooBar.getFooBar(number);
-
+        assertEquals("Number must be greater than 0", thrown.getMessage());
     }
 }
