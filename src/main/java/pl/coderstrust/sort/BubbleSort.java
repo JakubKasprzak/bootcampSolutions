@@ -14,14 +14,15 @@ public class BubbleSort {
             throw new IllegalArgumentException("Array cannot be null");
         }
 
-        for (int i = 0; i < array.length - 1; i++) {
-            for (int j = 0; j < array.length - i - 1; j++) {
-                if (array[j] > array[j + 1]) {
-                    swap(array, j, j + 1);
+        int[] sortedArray = array.clone();
+        for (int i = 0; i < sortedArray.length - 1; i++) {
+            for (int j = 0; j < sortedArray.length - i - 1; j++) {
+                if (sortedArray[j] > sortedArray[j + 1]) {
+                    swap(sortedArray, j, j + 1);
                 }
             }
         }
-        return array;
+        return sortedArray;
     }
 
     private static void swap(int[] array, int a, int b) {

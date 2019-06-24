@@ -14,16 +14,17 @@ public class SelectionSort {
             throw new IllegalArgumentException("Array cannot be null");
         }
 
-        for (int i = 0; i < array.length - 1; i++) {
+        int[] sortedArray = array.clone();
+        for (int i = 0; i < sortedArray.length - 1; i++) {
             int minimalValueIndex = i;
-            for (int j = i + 1; j < array.length; j++) {
-                if (array[j] < array[minimalValueIndex]) {
+            for (int j = i + 1; j < sortedArray.length; j++) {
+                if (sortedArray[j] < sortedArray[minimalValueIndex]) {
                     minimalValueIndex = j;
                 }
             }
-            swap(array, minimalValueIndex, i);
+            swap(sortedArray, minimalValueIndex, i);
         }
-        return array;
+        return sortedArray;
     }
 
     private static void swap(int[] array, int a, int b) {
