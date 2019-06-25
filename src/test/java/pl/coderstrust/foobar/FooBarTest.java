@@ -14,15 +14,13 @@ public class FooBarTest {
     @ParameterizedTest
     @MethodSource("argumentsForShouldReturnCorrectFooBar")
     void ShouldReturnCorrectFooBar(String[] expected, int number) {
-//        String[] result = FooBar.getFooBar(number);
         assertArrayEquals(expected, FooBar.getFooBar(number));
     }
 
     private static Stream<Arguments> argumentsForShouldReturnCorrectFooBar() {
+        String[] expected = {"0 FooBar", "1 ", "2 ", "3 Foo", "4 ", "5 Bar", "6 Foo", "7 ", "8 ", "9 Foo", "10 Bar", "11 ", "12 Foo", "13 ", "14 ", "15 FooBar"};
         return Stream.of(
-                Arguments.of(int a, 15),
-        a = 5;
-        );
+                Arguments.of(expected, 15));
     }
 
     @ParameterizedTest
