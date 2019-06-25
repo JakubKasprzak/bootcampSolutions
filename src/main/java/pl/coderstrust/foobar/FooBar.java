@@ -10,8 +10,8 @@ public class FooBar {
     }
 
     public static String[] getFooBar(int number) {
-        if (number < 1) {
-            throw new IllegalArgumentException("Number must be greater than 0");
+        if (number < 0) {
+            throw new IllegalArgumentException("Number cannot be lower than zero.");
         }
         String[] foobar = new String[number + 1];
         StringBuilder builder = new StringBuilder();

@@ -1,30 +1,35 @@
 package pl.coderstrust.foobar;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class FooBarTest {
 
-    @Test
-    public void shouldReturnCorrectFooBar() {
-        //given
-        int number = 15;
-        String[] expected = {"0 FooBar", "1 ", "2 ", "3 Foo", "4 ", "5 Bar", "6 Foo", "7 ", "8 ", "9 Foo", "10 Bar", "11 ", "12 Foo", "13 ", "14 ", "15 FooBar"};
-
-        //when
-        String[] result = FooBar.getFooBar(number);
-
-        //then
-        assertArrayEquals(expected, result);
+    @ParameterizedTest
+    @MethodSource("argumentsForShouldReturnCorrectFooBar")
+    void ShouldReturnCorrectFooBar(String[] expected, int number) {
+//        String[] result = FooBar.getFooBar(number);
+        assertArrayEquals(expected, FooBar.getFooBar(number));
     }
 
-    @Test
-    public void shouldReturnIllegalArgumentException() {
-        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> {
-            FooBar.getFooBar(-1);
-        });
+    private static Stream<Arguments> argumentsForShouldReturnCorrectFooBar() {
+        return Stream.of(
+                Arguments.of(int a, 15),
+        a = 5;
+        );
+    }
 
-        assertEquals("Number must be greater than 0", thrown.getMessage());
+    @ParameterizedTest
+    @ValueSource(ints = {-1})
+    void shouldThrowExceptionForInvalidArgument(int number) {
+        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> FooBar.getFooBar(number));
+
+        assertEquals("Number cannot be lower than zero.", thrown.getMessage());
     }
 }
