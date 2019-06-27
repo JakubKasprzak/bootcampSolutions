@@ -1,35 +1,48 @@
 package pl.coderstrust.christmastree;
 
-import org.junit.Assert;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ChristmasTreeTest {
 
-    @Test
-    public void shouldReturnProperChristmasTree() {
-        //given
-        int size = 5;
-        List<String> expected = Arrays.asList("     *", "    ***", "   *****", "  *******", " *********", "     **");
-
-        //when
-        List<String> result = ChristmasTree.getChristmasTree(size);
-
-        //then
-        Assert.assertEquals(expected, result);
+    @ParameterizedTest
+    @MethodSource("ChristmasTreeArguments")
+    void shouldReturnProperChristmasTree(int size, List<String> expected) {
+        assertEquals(expected,ChristmasTree.getChristmasTree(size));
     }
 
-    @Test
-    public void shouldReturnIllegalArgumentException() {
-        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> {
-            ChristmasTree.getChristmasTree(-1);
-        });
+    private static Stream<Arguments> ChristmasTreeArguments() {
+        List<String> expected5 = new ArrayList<>();
+        expected5.add("     *");
+        expected5.add("    ***");
+        expected5.add("   *****");
+        expected5.add("  *******");
+        expected5.add(" *********");
+        expected5.add("     **");
 
-        assertEquals("Number must be greater than 0", thrown.getMessage());
+        List<String> expected4 = Arrays.asList("    *", "   ***", "  *****", " *******", "    **");
+        List<String> expected3 = Arrays.asList("   *", "  ***", " *****", "   **");
+
+        return Stream.of(
+                Arguments.of(5, expected5),
+                Arguments.of(4, expected4),
+                Arguments.of(3, expected3));
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {2, 0, -10})
+    void shouldReturnIllegalArgumentException(int number) {
+        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> ChristmasTree.getChristmasTree(number));
+        assertEquals("Number must be greater than two.", thrown.getMessage());
     }
 }
