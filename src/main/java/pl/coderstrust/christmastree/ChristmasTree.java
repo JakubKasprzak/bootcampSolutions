@@ -7,7 +7,7 @@ public class ChristmasTree {
 
     public static void main(String[] args) {
         List<String> ChristmasTree = getChristmasTree(3);
-         ChristmasTree.forEach(System.out::println);
+        ChristmasTree.forEach(System.out::println);
     }
 
     public static List<String> getChristmasTree(int size) {
@@ -34,6 +34,6 @@ public class ChristmasTree {
         }
         line.append("**");
         result.add(line.toString());
-        return(result);
+        return (result);
     }
 }

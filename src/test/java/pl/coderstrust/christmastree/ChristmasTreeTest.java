@@ -5,7 +5,6 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
@@ -16,20 +15,13 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class ChristmasTreeTest {
 
     @ParameterizedTest
-    @MethodSource("ChristmasTreeArguments")
+    @MethodSource("christmasTreeArguments")
     void shouldReturnProperChristmasTree(int size, List<String> expected) {
-        assertEquals(expected,ChristmasTree.getChristmasTree(size));
+        assertEquals(expected, ChristmasTree.getChristmasTree(size));
     }
 
-    private static Stream<Arguments> ChristmasTreeArguments() {
-        List<String> expected5 = new ArrayList<>();
-        expected5.add("     *");
-        expected5.add("    ***");
-        expected5.add("   *****");
-        expected5.add("  *******");
-        expected5.add(" *********");
-        expected5.add("     **");
-
+    private static Stream<Arguments> christmasTreeArguments() {
+        List<String> expected5 = Arrays.asList("     *", "    ***", "   *****", "  *******", " *********", "     **");
         List<String> expected4 = Arrays.asList("    *", "   ***", "  *****", " *******", "    **");
         List<String> expected3 = Arrays.asList("   *", "  ***", " *****", "   **");
 
@@ -41,8 +33,8 @@ class ChristmasTreeTest {
 
     @ParameterizedTest
     @ValueSource(ints = {2, 0, -10})
-    void shouldReturnIllegalArgumentException(int number) {
-        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> ChristmasTree.getChristmasTree(number));
+    void shouldReturnIllegalArgumentExceptionForInvalidArgument(int size) {
+        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> ChristmasTree.getChristmasTree(size));
         assertEquals("Number must be greater than two.", thrown.getMessage());
     }
 }
