@@ -12,12 +12,12 @@ import static org.junit.jupiter.api.Assertions.*;
 public class FooBarTest {
 
     @ParameterizedTest
-    @MethodSource("FooBarArguments")
-    void ShouldReturnCorrectFooBar(int number, String[] expected) {
+    @MethodSource("fooBarArguments")
+    void shouldReturnCorrectFooBar(int number, String[] expected) {
         assertArrayEquals(expected, FooBar.getFooBar(number));
     }
 
-    private static Stream<Arguments> FooBarArguments() {
+    private static Stream<Arguments> fooBarArguments() {
         String[] expected15 = {"0 FooBar", "1 ", "2 ", "3 Foo", "4 ", "5 Bar", "6 Foo", "7 ", "8 ", "9 Foo", "10 Bar", "11 ", "12 Foo", "13 ", "14 ", "15 FooBar"};
         String[] expected10 = {"0 FooBar", "1 ", "2 ", "3 Foo", "4 ", "5 Bar", "6 Foo", "7 ", "8 ", "9 Foo", "10 Bar"};
         String[] expected5 = {"0 FooBar", "1 ", "2 ", "3 Foo", "4 ", "5 Bar"};
