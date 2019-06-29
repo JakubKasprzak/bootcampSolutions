@@ -12,12 +12,12 @@ import static org.junit.jupiter.api.Assertions.*;
 public class MultiplicationTableTest {
 
     @ParameterizedTest
-    @MethodSource("MultiplicationTableArguments")
+    @MethodSource("multiplicationTableArguments")
     void shouldReturnCorrectMultiplicationTable(int size, int[][] expected) {
         assertArrayEquals(expected, MultiplicationTable.getMultiplicationTable(size));
     }
 
-    private static Stream<Arguments> MultiplicationTableArguments() {
+    private static Stream<Arguments> multiplicationTableArguments() {
         int[][] expected4 = {{1, 2, 3, 4}, {2, 4, 6, 8}, {3, 6, 9, 12}, {4, 8, 12, 16}};
         int[][] expected3 = {{1, 2, 3}, {2, 4, 6}, {3, 6, 9}};
         int[][] expected2 = {{1, 2}, {2, 4}};
