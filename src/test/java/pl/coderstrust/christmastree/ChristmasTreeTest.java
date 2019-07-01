@@ -21,9 +21,9 @@ class ChristmasTreeTest {
     }
 
     private static Stream<Arguments> christmasTreeArguments() {
-        List<String> expected5 = Arrays.asList("     *", "    ***", "   *****", "  *******", " *********", "     **");
-        List<String> expected4 = Arrays.asList("    *", "   ***", "  *****", " *******", "    **");
-        List<String> expected3 = Arrays.asList("   *", "  ***", " *****", "   **");
+        List<String> expected5 = Arrays.asList("    *", "   ***", "  *****", " *******", "*********", "    **");
+        List<String> expected4 = Arrays.asList("   *", "  ***", " *****", "*******", "   **");
+        List<String> expected3 = Arrays.asList("  *", " ***", "*****", "  **");
 
         return Stream.of(
                 Arguments.of(5, expected5),

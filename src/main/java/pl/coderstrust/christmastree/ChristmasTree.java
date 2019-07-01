@@ -18,7 +18,6 @@ public class ChristmasTree {
         List<String> result = new ArrayList<>();
         StringBuilder line = new StringBuilder();
         for (int i = 1; i <= size; i++) {
-            line.append(" ");
             for (int j = size - i; j > 0; j--) {
                 line.append(" ");
             }
@@ -28,12 +27,12 @@ public class ChristmasTree {
             result.add(line.toString());
             line.setLength(0);
         }
-        line.append(" ");
         for (int i = 0; i < size - 1; i++) {
             line.append(" ");
         }
         line.append("**");
         result.add(line.toString());
+        line.setLength(0);
         return (result);
     }
 }
