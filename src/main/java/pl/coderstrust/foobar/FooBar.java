@@ -1,14 +1,21 @@
 package pl.coderstrust.foobar;
 
+import java.util.Arrays;
+
 public class FooBar {
 
     public static void main(String[] args) {
-        printFooBar(100);
+
+        System.out.println(Arrays.toString(getFooBar(100)));
     }
 
-    private static void printFooBar(int n) {
+    public static String[] getFooBar(int number) {
+        if (number < 0) {
+            throw new IllegalArgumentException("Number cannot be lower than zero.");
+        }
+        String[] foobar = new String[number + 1];
         StringBuilder builder = new StringBuilder();
-        for (int i = 0; i <= n; i++) {
+        for (int i = 0; i <= number; i++) {
             builder.append(i).append(" ");
             if (i % 3 == 0) {
                 builder.append("Foo");
@@ -16,8 +23,9 @@ public class FooBar {
             if (i % 5 == 0) {
                 builder.append("Bar");
             }
-            System.out.println(builder.toString());
+            foobar[i] = builder.toString();
             builder.setLength(0);
         }
+        return foobar;
     }
 }
