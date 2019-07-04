@@ -5,12 +5,11 @@ import java.util.Arrays;
 public class HoarePartition {
 
     public static void main(String[] args) {
-        int numbers[] = {64, 34, 12, 25, 22, 11, 90};
+        int numbers[] = {64, 34, 12, 67, 22, 11, 90};
         System.out.println(Arrays.toString(divide(numbers)));
     }
 
     private static int[] divide(int[] array) {
-        int first = 0;
         if (array == null) {
             throw new IllegalArgumentException("Array cannot be null");
         }
@@ -18,13 +17,17 @@ public class HoarePartition {
         int[] dividedArray = array.clone();
         int pivotIndex = countPivotIndex(dividedArray);
         int pivot = dividedArray[pivotIndex];
-        swap(dividedArray, pivotIndex, first);
-        for (int i = 1; i <= dividedArray.length; i++) {
-            for (int j = dividedArray.length - 1; j > i; j--) {
-                if (dividedArray[i] > pivot && dividedArray[j] < pivot) {
-                    swap(dividedArray, i, j);
-                }
-            }
+        swap(dividedArray, pivotIndex, 0);
+        int i = 0;
+        int j = dividedArray.length;
+        while (i < j) {
+            do {
+                i++;
+            } while (dividedArray[i] < pivot);
+            do {
+                j--;
+            } while (dividedArray[j] > pivot);
+            if (i < j) swap(dividedArray, i, j);
         }
         bringBackPivot(dividedArray, pivot);
         return dividedArray;
