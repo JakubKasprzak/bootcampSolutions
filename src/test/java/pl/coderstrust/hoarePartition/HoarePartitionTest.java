@@ -1,13 +1,17 @@
 package pl.coderstrust.hoarePartition;
 
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
+@DisplayName("Hoare Partition Test")
 class HoarePartitionTest {
 
     @ParameterizedTest
@@ -32,15 +36,15 @@ class HoarePartitionTest {
                 Arguments.of(numbers4, expected4));
     }
 
-    @ParameterizedTest
-    @MethodSource("hoarePartitionNullArgument")
-    void shouldThrowExceptionForInvalidArgument(int[] numbers) {
-        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> HoarePartition.divide(numbers));
-        assertEquals("Array cannot be null", thrown.getMessage());
+    @Test
+    @DisplayName("Should throw exception for null array")
+    void shouldThrowExceptionForNullArray() {
+        assertThrows(IllegalArgumentException.class, () -> HoarePartition.divide(null));
     }
 
-    private static Stream<Arguments> hoarePartitionNullArgument() {
-        return Stream.of(
-                Arguments.of((Object) null));
+    @Test
+    @DisplayName("Should throw exception for an empty array")
+    void shouldThrowExceptionForEmptyArray() {
+        assertThrows(IllegalArgumentException.class, () -> HoarePartition.divide(new int[0]));
     }
 }

@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class HoarePartition {
 
     public static void main(String[] args) {
-        int numbers[] = {64, 34, 12, 91, 22, 11, 90};
+        int numbers[] = {64, 34, 50, 12, 38, 22, 11, 90, 40};
         System.out.println(Arrays.toString(divide(numbers)));
     }
 
@@ -13,6 +13,10 @@ public class HoarePartition {
         if (array == null) {
             throw new IllegalArgumentException("Array cannot be null");
         }
+        if (array.length == 0) {
+            throw new IllegalArgumentException("Array cannot be empty");
+        }
+
 
         int[] dividedArray = array.clone();
         int pivotIndex = countPivotIndex(dividedArray);
@@ -27,18 +31,16 @@ public class HoarePartition {
             do {
                 j--;
             } while (dividedArray[j] > pivot);
-            if (i < j) swap(dividedArray, i, j);
+            if (i < j) {
+                swap(dividedArray, i, j);
+            }
         }
         bringBackPivot(dividedArray, pivot);
         return dividedArray;
     }
 
     private static int countPivotIndex(int[] array) {
-        if (array.length % 2 == 0) {
-            return array.length / 2;
-        } else {
-            return (array.length - 1) / 2;
-        }
+        return array.length / 2;
     }
 
     private static void swap(int[] array, int a, int b) {
