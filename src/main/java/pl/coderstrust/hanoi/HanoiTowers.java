@@ -15,23 +15,24 @@ public class HanoiTowers {
     public static Stack<Integer> runHanoi(int numberOfDiscsOnPileA) throws IOException {
         FileWriter output = new FileWriter("output.txt");
         PrintWriter printWriter = new PrintWriter(output);
-        Stack<Integer> pileA = new Stack<>();
-        Stack<Integer> pileB = new Stack<>();
-        Stack<Integer> pileC = new Stack<>();
-        for (int numberOfDisc = numberOfDiscsOnPileA; numberOfDisc > 0; numberOfDisc--)
-            pileA.push(numberOfDisc);
+        HanoiTower pileA = new HanoiTower("A");
+        HanoiTower pileB = new HanoiTower("B");
+        HanoiTower pileC = new HanoiTower("C");
+        for (int numberOfDisc = numberOfDiscsOnPileA; numberOfDisc > 0; numberOfDisc--) {
+            pileA.getStack().push(numberOfDisc);
+        }
         solveHanoi(numberOfDiscsOnPileA, pileA, pileB, pileC, printWriter);
         printWriter.close();
-        return pileC;
+        return pileC.getStack();
     }
 
-    private static void solveHanoi(int discOnTop, Stack pileFrom, Stack pileAuxiliary, Stack pileTo, PrintWriter printWriter) {
+    private static void solveHanoi(int discOnTop, HanoiTower pileFrom, HanoiTower pileAuxiliary, HanoiTower pileTo, PrintWriter printWriter) {
         if (discOnTop > 0) {
             solveHanoi(discOnTop - 1, pileFrom, pileTo, pileAuxiliary, printWriter);
-            int numberOfDisc = (int) pileFrom.pop();
-            pileTo.push(numberOfDisc);
-            System.out.println("Move disc " + discOnTop + " from pile " + pileFrom + " to pile " + pileTo);
-            printWriter.println("Move disc " + discOnTop + " from pile " + pileFrom + " to pile " + pileTo);
+            int numberOfDisc = (int) pileFrom.getStack().pop();
+            pileTo.getStack().push(numberOfDisc);
+            System.out.println("Move disc " + discOnTop + " from pile " + pileFrom.getName() + " to pile " + pileTo.getName());
+            printWriter.println("Move disc " + discOnTop + " from pile " + pileFrom.getName() + " to pile " + pileTo.getName());
             solveHanoi(discOnTop - 1, pileAuxiliary, pileFrom, pileTo, printWriter);
         }
     }
