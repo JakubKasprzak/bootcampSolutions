@@ -1,22 +1,32 @@
 package pl.coderstrust.pascal;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PascalTriangle {
 
     public static void main(String[] args) {
-        int treesize = 12;
-        printPascalTriangle(treesize);
+        List<String> PascalTriangle = getPascalTriangle(9);
+        PascalTriangle.forEach(System.out::println);
     }
 
-    public static void printPascalTriangle(int size) {
+    public static List<String> getPascalTriangle(int size) {
+        if (size < 1) {
+            throw new IllegalArgumentException("Number must be greater than 0.");
+        }
+        List<String> result = new ArrayList<>();
+        StringBuilder line = new StringBuilder();
         for (int n = 0; n <= size; n++) {
             for (int i = size - n; i > 0; i--) {
-                System.out.printf("%2s", "");
+                line.append(String.format("%2s", ""));
             }
             for (int k = 0; k <= n; k++) {
-                System.out.printf("%4d", binomialCoefficient(n, k));
+                line.append(String.format("%4d", binomialCoefficient(n, k)));
             }
-            System.out.println();
+            result.add(line.toString());
+            line.setLength(0);
         }
+        return result;
     }
 
     private static int binomialCoefficient(int n, int k) {
