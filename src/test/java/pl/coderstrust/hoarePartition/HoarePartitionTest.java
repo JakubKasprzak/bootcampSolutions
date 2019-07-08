@@ -22,13 +22,13 @@ class HoarePartitionTest {
 
     private static Stream<Arguments> hoarePartitionArguments() {
         int[] numbers1 = {64, 34, 12, 0, 22, 11, 90};
-        int[] numbers2 = {64, 34, 12, 13, 22, 11, 90};
-        int[] numbers3 = {64, 34, 12, 35, 22, 11, 90};
-        int[] numbers4 = {64, 34, 12, 91, 22, 11, 90};
+        int[] numbers2 = {34, 12, 13, 22, 11, 90};
+        int[] numbers3 = {12, 35, 22, 11, 90};
+        int[] numbers4 = {91, 22, 11, 90};
         int[] expected1 = {0, 34, 12, 64, 22, 11, 90};
-        int[] expected2 = {11, 12, 13, 64, 22, 34, 90};
-        int[] expected3 = {34, 12, 11, 22, 35, 64, 90};
-        int[] expected4 = {34, 12, 64, 22, 11, 90, 91};
+        int[] expected2 = {12, 13, 11, 22, 34, 90};
+        int[] expected3 = {11, 12, 22, 35, 90};
+        int[] expected4 = {11, 22, 91, 90};
         return Stream.of(
                 Arguments.of(numbers1, expected1),
                 Arguments.of(numbers2, expected2),
