@@ -14,7 +14,6 @@ public class PascalTriangle {
         if (size < 1) {
             throw new IllegalArgumentException("Number must be greater than 0.");
         }
-
         List<String> result = new ArrayList<>();
         StringBuilder line = new StringBuilder();
         for (int n = 0; n <= size; n++) {
@@ -27,7 +26,7 @@ public class PascalTriangle {
             result.add(line.toString());
             line.setLength(0);
         }
-        return (result);
+        return result;
     }
 
     private static int binomialCoefficient(int n, int k) {
