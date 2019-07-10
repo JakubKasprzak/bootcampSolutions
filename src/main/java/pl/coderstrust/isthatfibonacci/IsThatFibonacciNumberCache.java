@@ -7,19 +7,15 @@ public class IsThatFibonacciNumberCache {
     static Set<Long> fibonacciNumbers = new HashSet<>();
 
     public static void main(String args[]) {
-        int number = 102334155;
-        if (checkNumber(number)) {
-            System.out.println(number + " is truly a Fibonacci number");
-        } else {
-            System.out.println(number + " is NOT a Fibonacci number");
-        }
+        int number = 102334156;
+        System.out.println(number + " is " + (checkNumber(number) ? "truly" : "not") + " a Fibonacci number");
     }
 
     public static boolean checkNumber(long number) {
         if (number < 1) {
             return false;
-        } else
-            fillFibonacciSet();
+        }
+        fillFibonacciSet();
         return fibonacciNumbers.contains(number);
     }
 
