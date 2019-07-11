@@ -17,7 +17,7 @@ public class HoarePartition {
             throw new IllegalArgumentException("Array cannot be empty");
         }
 
-
+// nie klonować arraya, a zwracać index nowego pivota
         int[] dividedArray = array.clone();
         int pivotIndex = countPivotIndex(dividedArray);
         int pivot = dividedArray[pivotIndex];
