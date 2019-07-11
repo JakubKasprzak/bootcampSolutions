@@ -1,14 +1,16 @@
 package pl.coderstrust.letsSort;
 
-import java.util.Arrays;
-
 public class BubbleSort implements SortingMethod {
-        array = {64, 34, 25, 12, 22, 11, 90};
-        return sort(array);
+
+    public static void main(String args[]) {
+        int[] array = {64, 34, 25, 12, 22, 11, 90};
+        BubbleSort bubblesort = new BubbleSort();
+        bubblesort.sort(array);
     }
 
 
-    public static int[] sort(int[] array) {
+    @Override
+    public int[] sort(int[] array) {
         if (array == null) {
             throw new IllegalArgumentException("Array cannot be null");
         }
