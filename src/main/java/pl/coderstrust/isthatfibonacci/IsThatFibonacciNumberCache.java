@@ -6,6 +6,10 @@ import java.util.Set;
 public class IsThatFibonacciNumberCache {
     static Set<Long> fibonacciNumbers = new HashSet<>();
 
+    static {
+        fillFibonacciSet();
+    }
+
     public static void main(String args[]) {
         int number = 102334156;
         System.out.println(number + " is " + (checkNumber(number) ? "truly" : "not") + " a Fibonacci number");
@@ -15,7 +19,6 @@ public class IsThatFibonacciNumberCache {
         if (number < 1) {
             return false;
         }
-        fillFibonacciSet();
         return fibonacciNumbers.contains(number);
     }
 
