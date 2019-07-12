@@ -1,15 +1,15 @@
 package pl.coderstrust.letsSort;
+public class SelectionSort implements SortingMethod {
 
-import java.util.Arrays;
-
-public class SelectionSort {
-
-    public static void main(String[] args) {
-        int numbers[] = {64, 34, 25, 12, 22, 11, 90};
-        System.out.println(Arrays.toString(sort(numbers)));
+    public static void main(String args[]) {
+        int[] array = {64, 34, 25, 12, 22, 11, 90};
+        SelectionSort selectionsort = new SelectionSort();
+        selectionsort.sort(array);
     }
 
-    public static int[] sort(int[] array) {
+
+    @Override
+    public int[] sort(int[] array) {
         if (array == null) {
             throw new IllegalArgumentException("Array cannot be null");
         }

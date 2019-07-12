@@ -1,5 +1,4 @@
 package pl.coderstrust.letsSort;
-
 public class BubbleSort implements SortingMethod {
 
     public static void main(String args[]) {
