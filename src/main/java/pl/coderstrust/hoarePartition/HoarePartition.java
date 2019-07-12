@@ -5,38 +5,36 @@ import java.util.Arrays;
 public class HoarePartition {
 
     public static void main(String[] args) {
-        int numbers[] = {64, 34, 50, 12, 38, 22, 11, 90, 40};
-        System.out.println(Arrays.toString(divide(numbers)));
+        int numbers[] = {25, 14, 48, 33, 72, 8, 99};
+        sort(numbers);
+        System.out.println("Sorted array is: " + Arrays.toString(numbers));
     }
 
-    public static int[] divide(int[] array) {
+    public static int sort(int[] array) {
         if (array == null) {
             throw new IllegalArgumentException("Array cannot be null");
         }
         if (array.length == 0) {
             throw new IllegalArgumentException("Array cannot be empty");
         }
-
-// nie klonować arraya, a zwracać index nowego pivota
-        int[] dividedArray = array.clone();
-        int pivotIndex = countPivotIndex(dividedArray);
-        int pivot = dividedArray[pivotIndex];
-        swap(dividedArray, pivotIndex, 0);
+        int pivotIndex = countPivotIndex(array);
+        int pivot = array[pivotIndex];
+        System.out.println("Pivot is: " + pivot);
+        swap(array, pivotIndex, 0);
         int i = 0;
-        int j = dividedArray.length - 1;
+        int j = array.length - 1;
         while (i < j) {
             do {
                 i++;
-            } while (dividedArray[i] < pivot && i < j);
+            } while (array[i] < pivot && i < j);
             do {
                 j--;
-            } while (dividedArray[j] > pivot);
+            } while (array[j] > pivot);
             if (i < j) {
-                swap(dividedArray, i, j);
+                swap(array, i, j);
             }
         }
-        bringBackPivot(dividedArray, pivot);
-        return dividedArray;
+        return bringBackPivot(array, pivot);
     }
 
     private static int countPivotIndex(int[] array) {
@@ -49,7 +47,7 @@ public class HoarePartition {
         array[a] = temp;
     }
 
-    private static void bringBackPivot(int[] array, int pivot) {
+    public static int bringBackPivot(int[] array, int pivot) {
         int pivotIndex = 0;
         for (int i = 1; i < array.length; i++) {
             if (pivot > array[i]) {
@@ -57,5 +55,7 @@ public class HoarePartition {
                 pivotIndex = i;
             }
         }
+        int newPivotIndex = pivotIndex;
+        return newPivotIndex;
     }
 }
