@@ -1,4 +1,5 @@
 package pl.coderstrust.letsSort;
+
 public class SelectionSort implements SortingMethod {
 
     public static void main(String args[]) {
@@ -6,7 +7,6 @@ public class SelectionSort implements SortingMethod {
         SelectionSort selectionsort = new SelectionSort();
         selectionsort.sort(array);
     }
-
 
     @Override
     public int[] sort(int[] array) {
@@ -25,6 +25,12 @@ public class SelectionSort implements SortingMethod {
             swap(sortedArray, minimalValueIndex, i);
         }
         return sortedArray;
+    }
+
+    @Override
+    public String name() {
+        String name = "SelectionSort";
+        return name;
     }
 
     private static void swap(int[] array, int a, int b) {

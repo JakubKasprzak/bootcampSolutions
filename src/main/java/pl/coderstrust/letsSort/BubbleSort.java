@@ -1,4 +1,5 @@
 package pl.coderstrust.letsSort;
+
 public class BubbleSort implements SortingMethod {
 
     public static void main(String args[]) {
@@ -6,7 +7,6 @@ public class BubbleSort implements SortingMethod {
         BubbleSort bubblesort = new BubbleSort();
         bubblesort.sort(array);
     }
-
 
     @Override
     public int[] sort(int[] array) {
@@ -23,6 +23,12 @@ public class BubbleSort implements SortingMethod {
             }
         }
         return sortedArray;
+    }
+
+    @Override
+    public String name() {
+        String name = "BubbleSort";
+        return name;
     }
 
     private static void swap(int[] array, int a, int b) {
