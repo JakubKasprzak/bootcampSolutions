@@ -4,16 +4,16 @@ import java.util.Stack;
 
 public class HanoiTower {
 
-    private Stack<Integer> stack;
+    private Stack<Integer> discs;
     private String name;
 
     public HanoiTower(String name) {
-        stack = new Stack<>();
+        discs = new Stack<>();
         this.name = name;
     }
 
-    public Stack<Integer> getStack() {
-        return stack;
+    public Stack<Integer> getDiscs() {
+        return discs;
     }
 
     public String getName() {

@@ -3,11 +3,9 @@ package pl.coderstrust.hanoi;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-
 import java.io.IOException;
 import java.util.Stack;
 import java.util.stream.Stream;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class HanoiTowersTest {
@@ -15,7 +13,7 @@ public class HanoiTowersTest {
     @ParameterizedTest
     @MethodSource("hanoiTowersArguments")
     void shouldReturnCorrectStackOFDiscsOnPile3(int numberOfDiscs, Stack<Integer> expected) throws IOException {
-        assertEquals(expected, HanoiTowers.runHanoi(numberOfDiscs));
+        assertEquals(expected, HanoiTowers.hanoi(numberOfDiscs));
     }
 
     private static Stream<Arguments> hanoiTowersArguments() {
