@@ -19,7 +19,6 @@ public class HoarePartition {
         }
         int pivotIndex = countPivotIndex(array);
         int pivot = array[pivotIndex];
-        System.out.println("Pivot is: " + pivot);
         swap(array, pivotIndex, 0);
         int i = 0;
         int j = array.length - 1;

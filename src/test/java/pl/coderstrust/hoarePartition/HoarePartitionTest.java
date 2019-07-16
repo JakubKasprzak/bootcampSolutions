@@ -7,7 +7,9 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 @DisplayName("Hoare Partition Test")
 class HoarePartitionTest {
@@ -15,22 +17,20 @@ class HoarePartitionTest {
     @ParameterizedTest
     @MethodSource("hoarePartitionArguments")
     void shouldReturnCorrectPartition(int[] numbers) {
-
         //when
         int newPivotIndex = HoarePartition.sort(numbers);
 
         //then
-        for (int i = 0; i <= numbers.length -1 ; i++) {
-            if (i < newPivotIndex) {
-                assertTrue(numbers[i] < numbers[newPivotIndex]);
-            } else if (i > newPivotIndex) {
-                assertTrue(numbers[i] > numbers[newPivotIndex]);
-            }
+        for (int i = 0; i < newPivotIndex; i++) {
+            assertTrue(numbers[i] < numbers[newPivotIndex]);
+        }
+        for (int i = newPivotIndex + 1; i <= numbers.length - 1; i++) {
+            assertTrue(numbers[i] > numbers[newPivotIndex]);
         }
     }
 
     private static Stream<Arguments> hoarePartitionArguments() {
-        int[] numbers1 = {25, 14, 48, 33 , 72, 8, 99};
+        int[] numbers1 = {25, 14, 48, 33, 72, 8, 99};
         int[] numbers2 = {64, 34, 12, 0, 22, 11, 90};
         int[] numbers3 = {34, 12, 13, 22, 11, 90};
         int[] numbers4 = {12, 35, 22, 11, 90};
