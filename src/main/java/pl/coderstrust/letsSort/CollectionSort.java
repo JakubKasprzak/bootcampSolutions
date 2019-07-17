@@ -25,7 +25,7 @@ public class CollectionSort implements SortingMethod {
         Collections.sort(intList);
         int[] arraySorted = new int[intList.size()];
         for (int i = 0; i < arraySorted.length; i++) {
-            arraySorted[i] = intList.get(i).intValue();
+            arraySorted[i] = intList.get(i);
         }
         return arraySorted;
     }

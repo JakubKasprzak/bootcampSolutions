@@ -11,19 +11,13 @@ public abstract class SortingTestBase {
         // given
         int[] given = new int[]{5, 4, 3, 2, 1};
         int[] expected = new int[]{1, 2, 3, 4, 5};
-
         // when
         long startTime = System.nanoTime();
         int[] result = getSortingMethod().sort(given);
         long endTime = System.nanoTime();
         String name = getSortingMethod().name();
-
         System.out.println(name + " took: " + (endTime - startTime)+ " nanoseconds");
-
         // then
         assertArrayEquals(expected, result);
     }
-
-//  ....
-
 }
