@@ -14,6 +14,10 @@ public class QuickSort implements SortingMethod {
 
     @Override
     public int[] sort(int[] array) {
+        if (array == null) {
+            throw new IllegalArgumentException("Array cannot be null");
+        }
+
         int begin = 0;
         int end = array.length - 1;
         int[] sortedArray = array.clone();

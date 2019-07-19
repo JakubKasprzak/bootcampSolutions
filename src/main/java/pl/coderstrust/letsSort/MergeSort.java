@@ -11,6 +11,9 @@ public class MergeSort implements SortingMethod {
 
     @Override
     public int[] sort(int[] array) {
+        if (array == null) {
+            throw new IllegalArgumentException("Array cannot be null");
+        }
         int n = array.length;
         int[] sortedArray = array.clone();
         mergeSort(sortedArray, n);
