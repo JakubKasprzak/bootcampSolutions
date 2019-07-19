@@ -1,6 +1,7 @@
 package pl.coderstrust.letsSort;
 
 public class BubbleSort implements SortingMethod {
+    private static final String NAME = "BubbleSort";
 
     public static void main(String args[]) {
         int[] array = {64, 34, 25, 12, 22, 11, 90};
@@ -27,8 +28,7 @@ public class BubbleSort implements SortingMethod {
 
     @Override
     public String name() {
-        String name = "BubbleSort";
-        return name;
+        return NAME;
     }
 
     private static void swap(int[] array, int a, int b) {

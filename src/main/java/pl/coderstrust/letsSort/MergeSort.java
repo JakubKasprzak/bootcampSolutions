@@ -1,6 +1,7 @@
 package pl.coderstrust.letsSort;
 
 public class MergeSort implements SortingMethod {
+    private static final String NAME = "MergeSort";
 
     public static void main(String args[]) {
         int[] numbers = {64, 34, 25, 12, 22, 11, 90};
@@ -32,11 +33,10 @@ public class MergeSort implements SortingMethod {
         }
         mergeSort(l, mid);
         mergeSort(r, n - mid);
-
         merge(a, l, r, mid, n - mid);
     }
 
-    public static void merge(
+    private static void merge(
             int[] a, int[] l, int[] r, int left, int right) {
 
         int i = 0, j = 0, k = 0;
@@ -58,7 +58,6 @@ public class MergeSort implements SortingMethod {
 
     @Override
     public String name() {
-        String name = "MergeSort";
-        return name;
+        return NAME;
     }
 }

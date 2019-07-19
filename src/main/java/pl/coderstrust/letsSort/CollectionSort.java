@@ -1,10 +1,12 @@
 package pl.coderstrust.letsSort;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CollectionSort implements SortingMethod {
+    private static final String NAME = "CollectionSort";
 
     public static void main(String args[]) {
         int[] numbers = {64, 34, 25, 12, 22, 11, 90};
@@ -18,21 +20,14 @@ public class CollectionSort implements SortingMethod {
             throw new IllegalArgumentException("Array cannot be null");
         }
 
-        List<Integer> intList = new ArrayList<>();
-        for (int i : array) {
-            intList.add(i);
-        }
+        List<Integer> intList = Arrays.stream(array).boxed().collect(Collectors.toList());
         Collections.sort(intList);
-        int[] arraySorted = new int[intList.size()];
-        for (int i = 0; i < arraySorted.length; i++) {
-            arraySorted[i] = intList.get(i);
-        }
+        int[] arraySorted = intList.stream().mapToInt(Integer::intValue).toArray();
         return arraySorted;
     }
 
     @Override
     public String name() {
-        String name = "CollectionSort";
-        return name;
+        return NAME;
     }
 }

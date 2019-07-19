@@ -1,11 +1,15 @@
 package pl.coderstrust.letsSort;
 
+import java.util.Arrays;
+
 public class QuickSort implements SortingMethod {
+    private static final String NAME = "QuickSort";
 
     public static void main(String args[]) {
         int[] numbers = {64, 34, 25, 12, 22, 11, 90};
         QuickSort quickSort = new QuickSort();
         quickSort.sort(numbers);
+        System.out.println(Arrays.toString(quickSort.sort(numbers)));
     }
 
     @Override
@@ -31,20 +35,21 @@ public class QuickSort implements SortingMethod {
         for (int j = begin; j < end; j++) {
             if (arr[j] <= pivot) {
                 i++;
-                int swapTemp = arr[i];
-                arr[i] = arr[j];
-                arr[j] = swapTemp;
+                swap(arr, i, j);
             }
         }
-        int swapTemp = arr[i + 1];
-        arr[i + 1] = arr[end];
-        arr[end] = swapTemp;
+        swap(arr, i + 1, end);
         return i + 1;
     }
 
     @Override
     public String name() {
-        String name = "QuickSort";
-        return name;
+        return NAME;
+    }
+
+    private static void swap(int[] array, int a, int b) {
+        int temp = array[b];
+        array[b] = array[a];
+        array[a] = temp;
     }
 }
