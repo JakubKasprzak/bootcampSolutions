@@ -10,8 +10,8 @@ public class Processor {
     private static FileProcessor fileProcessor;
 
     public static void main(String[] args) throws FileNotFoundException {
-        File inputFile = new File("1000.txt");
-        File resultFile = new File("result.txt");
+        File inputFile = new File("src/main/java/pl/coderstrust/numbersFromFile/1000.txt");
+        File resultFile = new File("src/main/java/pl/coderstrust/numbersFromFile/result.txt");
         process(inputFile.getName(), resultFile.getName());
     }
 
@@ -22,7 +22,6 @@ public class Processor {
 
     public static void process(String fileName, String resultFileName) throws FileNotFoundException {
         List<String> linesFromFile = fileProcessor.readLinesFromFile(fileName);
-        System.out.println(linesFromFile);
         List<String> resultLines = new ArrayList<>();
         for (String line : linesFromFile) {
             resultLines.add(numbersProcessor.processLine(line));

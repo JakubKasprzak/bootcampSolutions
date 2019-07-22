@@ -13,13 +13,14 @@ public class FileProcessor {
     }
 
     static public List<String> readLinesFromFile(String fileName) throws FileNotFoundException {
-        File input = new File("1000.txt");
+        File input = new File("src/main/java/pl/coderstrust/numbersFromFile/1000.txt");
         List<String> list = new ArrayList<>();
         Scanner scanner = new Scanner(input);
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             list.add(line);
         }
+        scanner.close();
         return list;
     }
 
