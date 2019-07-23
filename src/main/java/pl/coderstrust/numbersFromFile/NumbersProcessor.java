@@ -5,7 +5,7 @@ public class NumbersProcessor {
     public static void main(String[] args) {
     }
 
-    public String processLine(String line) {
-        return null;
+    static public String processLine(String line) {
+        return line;
     }
 }

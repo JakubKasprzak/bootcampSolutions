@@ -1,7 +1,8 @@
 package pl.coderstrust.numbersFromFile;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,10 +10,10 @@ public class Processor {
     private static NumbersProcessor numbersProcessor;
     private static FileProcessor fileProcessor;
 
-    public static void main(String[] args) throws FileNotFoundException {
-        File inputFile = new File("src/main/java/pl/coderstrust/numbersFromFile/1000.txt");
-        File resultFile = new File("src/main/java/pl/coderstrust/numbersFromFile/result.txt");
-        process(inputFile.getName(), resultFile.getName());
+    public static void main(String[] args) throws IOException {
+        Path inputFile = Paths.get("1000.txt");
+        Path resultFile = Paths.get("result.txt");
+        process(inputFile.getFileName().toString(), resultFile.getFileName().toString());
     }
 
     public Processor(NumbersProcessor numbersProcessor, FileProcessor fileProcessor) {
@@ -20,12 +21,13 @@ public class Processor {
         this.fileProcessor = fileProcessor;
     }
 
-    public static void process(String fileName, String resultFileName) throws FileNotFoundException {
+    public static void process(String fileName, String resultFileName) throws IOException {
         List<String> linesFromFile = fileProcessor.readLinesFromFile(fileName);
         List<String> resultLines = new ArrayList<>();
         for (String line : linesFromFile) {
             resultLines.add(numbersProcessor.processLine(line));
         }
+        System.out.println(resultLines);
         fileProcessor.writeLinesToFile(resultLines, resultFileName);
     }
 }
