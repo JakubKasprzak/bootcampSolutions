@@ -10,10 +10,10 @@ public class HanoiTowers {
 
 
     public static void main(String[] args) throws IOException {
-        hanoi(TOTAL_NUMBER_OF_DISCS);
+        playHanoi(TOTAL_NUMBER_OF_DISCS);
     }
 
-    public static Stack<Integer> hanoi(int numberOfDiscsOnPileA) throws IOException {
+    public static Stack<Integer> playHanoi(int numberOfDiscsOnPileA) throws IOException {
         FileWriter output = new FileWriter("output.txt");
         PrintWriter printWriter = new PrintWriter(output);
         HanoiTower pileA = new HanoiTower("A");
@@ -27,12 +27,19 @@ public class HanoiTowers {
         return pileC.getDiscs();
     }
 
-    private static void solveHanoi(int discOnTop, HanoiTower pileFrom, HanoiTower pileAuxiliary, HanoiTower pileTo, PrintWriter printWriter) {
+    public static void hanoi(HanoiTower pileFrom, HanoiTower pileAuxiliary, HanoiTower pileTo) {
+        //walidacja danych wejściowych - rozmiar pile A>0, ple b i c = 0
+        //tu stworzyć printwritera
+        //odpalić solveHanoi
+
+    }
+
+
+    private static void solveHanoi(int discOnTop, HanoiTower pileFrom, HanoiTower pileAuxiliary, HanoiTower pileTo, MyWriter printWriter) {
         if (discOnTop > 0) {
             solveHanoi(discOnTop - 1, pileFrom, pileTo, pileAuxiliary, printWriter);
             int numberOfDisc = pileFrom.getDiscs().pop();
             pileTo.getDiscs().push(numberOfDisc);
-            System.out.println("Move disc " + discOnTop + " from pile " + pileFrom.getName() + " to pile " + pileTo.getName());
             printWriter.println("Move disc " + discOnTop + " from pile " + pileFrom.getName() + " to pile " + pileTo.getName());
             solveHanoi(discOnTop - 1, pileAuxiliary, pileFrom, pileTo, printWriter);
         }
