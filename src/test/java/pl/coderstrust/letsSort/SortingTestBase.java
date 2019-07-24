@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
@@ -27,16 +28,19 @@ public abstract class SortingTestBase {
     }
 
     private static Stream<Arguments> letsSortArguments() {
+        int[] given0 = {};
         int[] given1 = {1};
         int[] given2 = {1, 1};
         int[] given3 = {1, 2, 3, 4, 5};
         int[] given4 = {5, 4, 3, 2, 1};
+        int[] expected0 = {};
         int[] expected1 = {1};
         int[] expected2 = {1, 1};
         int[] expected3 = {1, 2, 3, 4, 5};
         int[] expected4 = {1, 2, 3, 4, 5};
 
         return Stream.of(
+                Arguments.of(given0, expected0),
                 Arguments.of(given1, expected1),
                 Arguments.of(given2, expected2),
                 Arguments.of(given3, expected3),
