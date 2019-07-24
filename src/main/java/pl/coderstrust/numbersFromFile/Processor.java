@@ -25,9 +25,10 @@ public class Processor {
         List<String> linesFromFile = fileProcessor.readLinesFromFile(fileName);
         List<String> resultLines = new ArrayList<>();
         for (String line : linesFromFile) {
-            resultLines.add(numbersProcessor.processLine(line));
+            if (line.matches("[ 0-9]+")) {
+                resultLines.add(numbersProcessor.processLine(line));
+            }
         }
-        System.out.println(resultLines);
         fileProcessor.writeLinesToFile(resultLines, resultFileName);
     }
 }
