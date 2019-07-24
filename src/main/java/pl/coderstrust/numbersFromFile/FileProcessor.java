@@ -1,6 +1,7 @@
 package pl.coderstrust.numbersFromFile;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -15,9 +16,10 @@ public class FileProcessor {
     public static void main(String[] args) {
     }
 
-    static public List<String> readLinesFromFile(String fileName) throws IOException {
-        File input = new File("src/main/java/pl/coderstrust/numbersFromFile/1000.txt");
+    static public List<String> readLinesFromFile(String inputFilePath) throws IOException {
+        File input = new File(inputFilePath);
         Scanner scanner = new Scanner(input);
+        //scannera używać w bloku "try with resources"
         List<String> list = new ArrayList<>();
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();

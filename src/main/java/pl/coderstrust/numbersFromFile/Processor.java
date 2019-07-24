@@ -1,8 +1,6 @@
 package pl.coderstrust.numbersFromFile;
 
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,9 +9,9 @@ public class Processor {
     private static FileProcessor fileProcessor;
 
     public static void main(String[] args) throws IOException {
-        Path inputFile = Paths.get("1000.txt");
-        Path resultFile = Paths.get("result.txt");
-        process(inputFile.getFileName().toString(), resultFile.getFileName().toString());
+        String inputFilePath = "src/main/java/pl/coderstrust/numbersFromFile/1000.txt";
+        String outputFilePath = "src/main/java/pl/coderstrust/numbersFromFile/result.txt";
+        process(inputFilePath, outputFilePath);
     }
 
     public Processor(NumbersProcessor numbersProcessor, FileProcessor fileProcessor) {
@@ -21,14 +19,12 @@ public class Processor {
         this.fileProcessor = fileProcessor;
     }
 
-    public static void process(String fileName, String resultFileName) throws IOException {
-        List<String> linesFromFile = fileProcessor.readLinesFromFile(fileName);
+    public static void process(String filePath, String resultFilePath) throws IOException {
+        List<String> linesFromFile = fileProcessor.readLinesFromFile(filePath);
         List<String> resultLines = new ArrayList<>();
         for (String line : linesFromFile) {
-            if (line.matches("[ 0-9]+")) {
-                resultLines.add(numbersProcessor.processLine(line));
-            }
+            resultLines.add(numbersProcessor.processLine(line));
         }
-        fileProcessor.writeLinesToFile(resultLines, resultFileName);
+        fileProcessor.writeLinesToFile(resultLines, resultFilePath);
     }
 }
