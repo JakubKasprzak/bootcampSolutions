@@ -1,5 +1,9 @@
 package pl.coderstrust.numbersFromFile;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 public class NumbersProcessor {
 
     public static void main(String[] args) {
@@ -8,24 +12,25 @@ public class NumbersProcessor {
     static public String processLine(String line) {
         if (line.matches("[ 0-9]+")) {
             StringBuilder newLine = new StringBuilder();
-            //użyc scanner.nextInt lub  scanner.nextNumber zamiast splita
-            String[] stringNumbers = line.split(" +");
-            int[] numbers = new int[stringNumbers.length];
+            Scanner scanner = new Scanner(line);
+            List<Integer> numbersList = new ArrayList<>();
             int sum = 0;
-            for (int i = 1; i < stringNumbers.length; i++) {
-                numbers[i] = Integer.parseInt(stringNumbers[i]);
-                sum += numbers[i];
-                if (i == stringNumbers.length - 1) {
-                    newLine.append(numbers[i]);
+            while (scanner.hasNext()) {
+                int number = scanner.nextInt();
+                numbersList.add(number);
+                sum += number;
+                if (scanner.hasNext() == false) {
+                    newLine.append("=");
+                } else if (numbersList.size() == 1) {
+                    newLine.append(number);
                 } else {
-                    newLine.append(numbers[i] + "+");
+                    newLine.append("+" + number);
                 }
             }
-            newLine.append("=" + sum);
+            scanner.close();
+            newLine.append(sum);
             String result = newLine.toString();
             return result;
-        } else {
-            return "";
-        }
+        } else return "";
     }
 }
