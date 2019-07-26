@@ -13,7 +13,6 @@ import java.util.Scanner;
 
 public class FileProcessor {
 
-
     public static void main(String[] args) {
     }
 
@@ -30,8 +29,8 @@ public class FileProcessor {
         return list;
     }
 
-    public static void writeLinesToFile(List<String> resultLines, String resultFileName) throws IOException {
-        Path result = Paths.get("src/main/java/pl/coderstrust/numbersFromFile/result.txt");
+    public static void writeLinesToFile(List<String> resultLines, String resultFilePath) throws IOException {
+        Path result = Paths.get(resultFilePath);
         Files.write(result, resultLines, StandardCharsets.UTF_8);
     }
 }

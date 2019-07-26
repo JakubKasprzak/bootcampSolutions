@@ -19,8 +19,8 @@ public class Processor {
         this.fileProcessor = fileProcessor;
     }
 
-    public static void process(String filePath, String resultFilePath) throws IOException {
-        List<String> linesFromFile = fileProcessor.readLinesFromFile(filePath);
+    public static void process(String inputFilePath, String resultFilePath) throws IOException {
+        List<String> linesFromFile = fileProcessor.readLinesFromFile(inputFilePath);
         List<String> resultLines = new ArrayList<>();
         for (String line : linesFromFile) {
             resultLines.add(numbersProcessor.processLine(line));
