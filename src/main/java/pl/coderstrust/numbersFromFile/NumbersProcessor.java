@@ -9,7 +9,7 @@ public class NumbersProcessor {
     public static void main(String[] args) {
     }
 
-    static public String processLine(String line) {
+    public String processLine(String line) {
         if (line.matches("[ 0-9]+")) {
             StringBuilder newLine = new StringBuilder();
             Scanner scanner = new Scanner(line);
@@ -31,6 +31,8 @@ public class NumbersProcessor {
             newLine.append(sum);
             String result = newLine.toString();
             return result;
-        } else return "";
+        } else {
+            return "";
+        }
     }
 }

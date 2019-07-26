@@ -16,7 +16,7 @@ public class FileProcessor {
     public static void main(String[] args) {
     }
 
-    static public List<String> readLinesFromFile(String inputFilePath) {
+    public List<String> readLinesFromFile(String inputFilePath) {
         List<String> list = new ArrayList<>();
         try (Scanner scanner = new Scanner(new File(inputFilePath))) {
             while (scanner.hasNextLine()) {
@@ -29,7 +29,7 @@ public class FileProcessor {
         return list;
     }
 
-    public static void writeLinesToFile(List<String> resultLines, String resultFilePath) throws IOException {
+    void writeLinesToFile(List<String> resultLines, String resultFilePath) throws IOException {
         Path result = Paths.get(resultFilePath);
         Files.write(result, resultLines, StandardCharsets.UTF_8);
     }
