@@ -7,7 +7,11 @@ public class Square extends Rectangle {
         super(side, side);
         if (side < 0) {
             throw new IllegalArgumentException("Number cannot be less than 0.");
-        } else
-        this.side = side;
+        } else {
+            this.side = side;
+        }
+    }
+
+    void cokolwiek() {
     }
 }
