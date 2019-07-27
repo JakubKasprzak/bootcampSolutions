@@ -9,8 +9,8 @@ public class NumbersProcessor {
     public static void main(String[] args) {
     }
 
-    public String processLine(String line) {
-        if (line.matches("[ 0-9]+")) {
+    public static String processLine(String line) {
+        if (line.matches("(\\D+\\d+)+")) {
             StringBuilder newLine = new StringBuilder();
             Scanner scanner = new Scanner(line);
             List<Integer> numbersList = new ArrayList<>();
@@ -19,10 +19,10 @@ public class NumbersProcessor {
                 int number = scanner.nextInt();
                 numbersList.add(number);
                 sum += number;
-                if (scanner.hasNext() == false) {
-                    newLine.append("=");
-                } else if (numbersList.size() == 1) {
+                if (numbersList.size() == 1) {
                     newLine.append(number);
+                } else if (scanner.hasNext() == false) {
+                    newLine.append("+" + number + "=");
                 } else {
                     newLine.append("+" + number);
                 }
@@ -31,8 +31,7 @@ public class NumbersProcessor {
             newLine.append(sum);
             String result = newLine.toString();
             return result;
-        } else {
-            return "";
         }
+        return "";
     }
 }
