@@ -1,12 +1,12 @@
-package pl.coderstrust.letsSort;
+package pl.coderstrust.sorting;
 
-public class SelectionSort implements SortingMethod {
-    private static final String NAME = "SelectionSort";
+public class BubbleSort implements SortingMethod {
+    private static final String NAME = "BubbleSort";
 
     public static void main(String args[]) {
         int[] array = {64, 34, 25, 12, 22, 11, 90};
-        SelectionSort selectionsort = new SelectionSort();
-        selectionsort.sort(array);
+        BubbleSort bubblesort = new BubbleSort();
+        bubblesort.sort(array);
     }
 
     @Override
@@ -14,23 +14,15 @@ public class SelectionSort implements SortingMethod {
         if (array == null) {
             throw new IllegalArgumentException("Array cannot be null");
         }
-
         int[] sortedArray = array.clone();
         for (int i = 0; i < sortedArray.length - 1; i++) {
-            int minimalValueIndex = i;
-            for (int j = i + 1; j < sortedArray.length; j++) {
-                if (sortedArray[j] < sortedArray[minimalValueIndex]) {
-                    minimalValueIndex = j;
+            for (int j = 0; j < sortedArray.length - i - 1; j++) {
+                if (sortedArray[j] > sortedArray[j + 1]) {
+                    swap(sortedArray, j, j + 1);
                 }
             }
-            swap(sortedArray, minimalValueIndex, i);
         }
         return sortedArray;
-    }
-
-    @Override
-    public String name() {
-        return NAME;
     }
 
     private static void swap(int[] array, int a, int b) {

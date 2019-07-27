@@ -1,4 +1,4 @@
-package pl.coderstrust.letsSort;
+package pl.coderstrust.sorting;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,19 +15,20 @@ public abstract class SortingTestBase {
     public abstract SortingMethod getSortingMethod();
 
     @ParameterizedTest
-    @MethodSource("letsSortArguments")
-    public void shouldSortSimpleArray(int[] given, int[] expected) {
+    @DisplayName("Should sort given array.")
+    @MethodSource("arraysToSort")
+    public void shouldSortGivenArray(int[] given, int[] expected) {
 
         long startTime = System.nanoTime();
         int[] result = getSortingMethod().sort(given);
         long endTime = System.nanoTime();
-        String name = getSortingMethod().name();
-        System.out.println(name + " took: " + (endTime - startTime) + " nanoseconds");
+        String getName = getSortingMethod().getClass().toString();
+        System.out.println(getName + " took: " + (endTime - startTime) + " nanoseconds");
         // then
         assertArrayEquals(expected, result);
     }
 
-    private static Stream<Arguments> letsSortArguments() {
+    private static Stream<Arguments> arraysToSort() {
         int[] given0 = {};
         int[] given1 = {1};
         int[] given2 = {1, 1};
@@ -48,7 +49,7 @@ public abstract class SortingTestBase {
     }
 
     @Test
-    @DisplayName("Should throw exception for null array")
+    @DisplayName("Should throw exception for null array.")
     void shouldThrowExceptionForNullArray() {
         assertThrows(IllegalArgumentException.class, () -> getSortingMethod().sort(null));
     }

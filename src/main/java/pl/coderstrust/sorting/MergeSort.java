@@ -1,4 +1,4 @@
-package pl.coderstrust.letsSort;
+package pl.coderstrust.sorting;
 
 public class MergeSort implements SortingMethod {
     private static final String NAME = "MergeSort";
@@ -46,8 +46,7 @@ public class MergeSort implements SortingMethod {
         while (i < left && j < right) {
             if (l[i] <= r[j]) {
                 a[k++] = l[i++];
-            }
-            else {
+            } else {
                 a[k++] = r[j++];
             }
         }
@@ -57,10 +56,5 @@ public class MergeSort implements SortingMethod {
         while (j < right) {
             a[k++] = r[j++];
         }
-    }
-
-    @Override
-    public String name() {
-        return NAME;
     }
 }

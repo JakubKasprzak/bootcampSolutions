@@ -1,4 +1,4 @@
-package pl.coderstrust.letsSort;
+package pl.coderstrust.sorting;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -19,15 +19,8 @@ public class CollectionSort implements SortingMethod {
         if (array == null) {
             throw new IllegalArgumentException("Array cannot be null");
         }
-
         List<Integer> intList = Arrays.stream(array).boxed().collect(Collectors.toList());
         Collections.sort(intList);
-        int[] arraySorted = intList.stream().mapToInt(Integer::intValue).toArray();
-        return arraySorted;
-    }
-
-    @Override
-    public String name() {
-        return NAME;
+        return intList.stream().mapToInt(Integer::intValue).toArray();
     }
 }

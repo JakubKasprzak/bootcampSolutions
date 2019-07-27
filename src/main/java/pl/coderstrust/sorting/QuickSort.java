@@ -1,4 +1,4 @@
-package pl.coderstrust.letsSort;
+package pl.coderstrust.sorting;
 
 import java.util.Arrays;
 
@@ -17,7 +17,6 @@ public class QuickSort implements SortingMethod {
         if (array == null) {
             throw new IllegalArgumentException("Array cannot be null");
         }
-
         int begin = 0;
         int end = array.length - 1;
         int[] sortedArray = array.clone();
@@ -44,11 +43,6 @@ public class QuickSort implements SortingMethod {
         }
         swap(arr, i + 1, end);
         return i + 1;
-    }
-
-    @Override
-    public String name() {
-        return NAME;
     }
 
     private static void swap(int[] array, int a, int b) {
