@@ -41,7 +41,7 @@ public class HanoiTowersTest {
 
     @ParameterizedTest
     @MethodSource("hanoiLoadedBorCTowerArguments")
-    void shouldThrowRuntimeException(HanoiTower givenPileA, HanoiTower givenPileB, HanoiTower givenPileC) {
+    void shouldThrowIllegalArgumentException(HanoiTower givenPileA, HanoiTower givenPileB, HanoiTower givenPileC) {
         IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,
                 () -> HanoiTowers.hanoi(givenPileA, givenPileB, givenPileC));
         assertEquals("Piles B and C must be empty", thrown.getMessage());
