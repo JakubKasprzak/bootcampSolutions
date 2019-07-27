@@ -2,14 +2,14 @@ package pl.coderstrust.hanoi;
 
 import java.io.PrintWriter;
 
-public class MyWriter {
+public class FileAndConsoleLogger {
     private PrintWriter printWriter;
 
-    public MyWriter(PrintWriter printWriter) {
+    public FileAndConsoleLogger(PrintWriter printWriter) {
         this.printWriter = printWriter;
     }
 
-    void println(String log) {
+    void log(String log) {
         System.out.println(log);
         printWriter.println(log);
     }

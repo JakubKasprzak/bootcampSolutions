@@ -9,42 +9,33 @@ import java.io.IOException;
 import java.util.EmptyStackException;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
+import static org.junit.jupiter.api.Assertions.*;
 
 public class HanoiTowersTest {
 
-    @ParameterizedTest
-    @MethodSource("hanoiTowersArguments")
-    void shouldReturnCorrectStackOFDiscsOnPile3(HanoiTower givenA, HanoiTower givenB, HanoiTower givenC, HanoiTower expected) throws IOException {
-        assertEquals(expected.getDiscs().size(), HanoiTowers.hanoi(givenA, givenB, givenC).getDiscs().size());
-    }
-
-    private static Stream<Arguments> hanoiTowersArguments() {
-        HanoiTower expected3C = new HanoiTower("e3C");
-        expected3C.getDiscs().push(3);
-        expected3C.getDiscs().push(2);
-        expected3C.getDiscs().push(1);
-
-        HanoiTower given3A = new HanoiTower("g3A");
-        given3A.getDiscs().push(3);
-        given3A.getDiscs().push(2);
-        given3A.getDiscs().push(1);
-
-        HanoiTower given3B = new HanoiTower("g3B");
-
-        HanoiTower given3C = new HanoiTower("g3C");
-
-        return Stream.of(
-                Arguments.of(given3A, given3B, given3C, expected3C));
+    @Test
+    void shouldReturnCorrectStackOFDiscsOnPile3() throws IOException {
+        //given
+        HanoiTower givenA = new HanoiTower("A");
+        givenA.getDiscs().push(3);
+        givenA.getDiscs().push(2);
+        givenA.getDiscs().push(1);
+        HanoiTower givenB = new HanoiTower("B");
+        HanoiTower givenC = new HanoiTower("C");
+        Object discs = givenA.getDiscs().clone();
+        //when
+        HanoiTowers.hanoi(givenA, givenB, givenC);
+        //then
+        assertTrue(givenA.getDiscs().empty());
+        assertTrue(givenB.getDiscs().empty());
+        assertEquals(discs, givenC.getDiscs());
     }
 
     @Test
     void shouldThrowEmptyStackExceptionForEmptyPileA() {
-        HanoiTower givenEmptyPileA = new HanoiTower("gA0");
-        HanoiTower givenPileB = new HanoiTower("gB0");
-        HanoiTower givenPileC = new HanoiTower("gC0");
+        HanoiTower givenEmptyPileA = new HanoiTower("A");
+        HanoiTower givenPileB = new HanoiTower("B");
+        HanoiTower givenPileC = new HanoiTower("C");
         assertThrows(EmptyStackException.class, () -> HanoiTowers.hanoi(givenEmptyPileA, givenPileB, givenPileC));
     }
 
@@ -57,20 +48,20 @@ public class HanoiTowersTest {
     }
 
     private static Stream<Arguments> hanoiLoadedBorCTowerArguments() {
-        HanoiTower givenPileA = new HanoiTower("g3A");
+        HanoiTower givenPileA = new HanoiTower("A");
         givenPileA.getDiscs().push(3);
         givenPileA.getDiscs().push(2);
         givenPileA.getDiscs().push(1);
 
-        HanoiTower givenPileB = new HanoiTower("g3B");
+        HanoiTower givenPileB = new HanoiTower("B");
         givenPileB.getDiscs().push(1);
 
-        HanoiTower givenPileC = new HanoiTower("g3C");
+        HanoiTower givenPileC = new HanoiTower("C");
         givenPileC.getDiscs().push(1);
 
-        HanoiTower givenEmptyPileB = new HanoiTower("gEB");
+        HanoiTower givenEmptyPileB = new HanoiTower("EB");
 
-        HanoiTower givenEmptyPileC = new HanoiTower("gEC");
+        HanoiTower givenEmptyPileC = new HanoiTower("EC");
 
         return Stream.of(
                 Arguments.of(givenPileA, givenPileB, givenEmptyPileC),
