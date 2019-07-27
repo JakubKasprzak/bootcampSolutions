@@ -11,7 +11,4 @@ public class Square extends Rectangle {
             this.side = side;
         }
     }
-
-    void cokolwiek() {
-    }
 }
