@@ -21,15 +21,15 @@ class NumbersProcessorTest {
     private static Stream<Arguments> numbersProcessorArguments() {
         String line1 = "      2      3      5      7     11     13     17     19     23     29 ";
         String line2 = "";
-        String line3 = " 789sfhsiudfh  hdsau hua hhfhf 987";
+        String line3 = "789 sfhsiudfh  hdsau hua hhfhf 987 ";
         String line4 = "1 1 1 1 1 1";
         String line5 = "                   ";
 
         String expected1 = "2+3+5+7+11+13+17+19+23+29=129";
-        String expected2 = "";
+        String expected2 = "empty line";
         String expected3 = "789+987=1776";
         String expected4 = "1+1+1+1+1+1=6";
-        String expected5 = "";
+        String expected5 = "empty line";
 
         return Stream.of(
                 Arguments.of(line1, expected1),
