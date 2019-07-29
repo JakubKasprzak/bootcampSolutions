@@ -9,7 +9,7 @@ public class NumbersProcessor {
     public static void main(String[] args) {
     }
 
-    public static String processLine(String line) {
+    static String processLine(String line) {
         if (line.matches("(\\D*\\d+\\D*)+")) {
             StringBuilder newLine = new StringBuilder();
             Scanner scanner = new Scanner(line);
@@ -26,17 +26,15 @@ public class NumbersProcessor {
                     if (numbersList.size() == 1) {
                         newLine.append(number);
                     } else if (scanner.hasNext() == false) {
-                        newLine.append("+" + number + "=");
+                        newLine.append("+" + number + "=" + sum);
                     } else {
                         newLine.append("+" + number);
                     }
                 }
             }
             scanner.close();
-            newLine.append(sum);
-            String result = newLine.toString();
-            return result;
+            return newLine.toString();
         }
-        return "empty line";
+        return "there was no numbers in this line";
     }
 }

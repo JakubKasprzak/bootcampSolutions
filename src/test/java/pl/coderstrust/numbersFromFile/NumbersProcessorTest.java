@@ -12,9 +12,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class NumbersProcessorTest {
 
     @ParameterizedTest
-    @DisplayName("Should extract numbers from line and return equation.")
+    @DisplayName("Should extract numbers from line and return equation made of them.")
     @MethodSource("numbersProcessorArguments")
-    void processLine(String line, String expected) {
+    void shouldReturnEquationMadeOfNumbersExtractedFromLine(String line, String expected) {
         assertEquals(expected, NumbersProcessor.processLine(line));
     }
 
@@ -27,11 +27,11 @@ class NumbersProcessorTest {
         String line6 = " a sdfhdsu ahl@#$#$%sdhdsh.,  dfwrf fhv";
 
         String expected1 = "2+3+5+7+11+13+17+19+23+29=129";
-        String expected2 = "empty line";
+        String expected2 = "there was no numbers in this line";
         String expected3 = "789+987=1776";
         String expected4 = "1+1+1+1+1+1=6";
-        String expected5 = "empty line";
-        String expected6 = "empty line";
+        String expected5 = "there was no numbers in this line";
+        String expected6 = "there was no numbers in this line";
 
         return Stream.of(
                 Arguments.of(line1, expected1),

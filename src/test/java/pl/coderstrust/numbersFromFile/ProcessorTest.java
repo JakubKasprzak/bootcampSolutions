@@ -39,6 +39,4 @@ class ProcessorTest {
         verify(numbersProcessor, times(1)).processLine("4 5 6");
         verify(fileProcessor).writeLinesToFile(Arrays.asList("1+2+3=6", "4+5+6=15"), "output.txt");
     }
-    //dorobić test numbersprocesowa i fileprocesora i test integraxyjny w którym użyję wszystkich 3 klas
-
 }
