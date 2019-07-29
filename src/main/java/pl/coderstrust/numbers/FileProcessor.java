@@ -1,4 +1,4 @@
-package pl.coderstrust.numbersFromFile;
+package pl.coderstrust.numbers;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -13,24 +13,19 @@ import java.util.Scanner;
 
 public class FileProcessor {
 
-    public static void main(String[] args) {
-    }
-
-    static List<String> readLinesFromFile(String inputFilePath) {
+    public List<String> readLinesFromFile(String filePath) throws FileNotFoundException {
         List<String> list = new ArrayList<>();
-        try (Scanner scanner = new Scanner(new File(inputFilePath))) {
+        try (Scanner scanner = new Scanner(new File(filePath))) {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 list.add(line);
             }
-        } catch (FileNotFoundException fnfe) {
-            fnfe.printStackTrace();
         }
         return list;
     }
 
-    static void writeLinesToFile(List<String> resultLines, String resultFilePath) throws IOException {
-        Path result = Paths.get(resultFilePath);
-        Files.write(result, resultLines, StandardCharsets.UTF_8);
+    public void writeLinesToFile(List<String> lines, String filePath) throws IOException {
+        Path result = Paths.get(filePath);
+        Files.write(result, lines, StandardCharsets.UTF_8);
     }
 }
