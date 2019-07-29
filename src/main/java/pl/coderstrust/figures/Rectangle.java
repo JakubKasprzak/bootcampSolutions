@@ -4,11 +4,13 @@ public class Rectangle implements Figure {
     private double width;
     private double length;
 
-    Rectangle(double length, double width) {
-        if (length < 0 || width < 0) {
-            throw new IllegalArgumentException("Number cannot be less than 0.");
-        } else {
-            this.length = length;
+    public Rectangle(double length, double width) {
+        if (length < 0) {
+            throw new IllegalArgumentException("Number cannot be lower than 0.");
+        }
+        this.length = length;
+        if (width < 0) {
+            throw new IllegalArgumentException("Number cannot be lower than 0.");
         }
         this.width = width;
     }

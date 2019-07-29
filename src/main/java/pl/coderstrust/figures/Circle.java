@@ -4,12 +4,11 @@ public class Circle implements Figure {
     private double radius;
     private static final double pi = Math.PI;
 
-    Circle(double radius) {
+    public Circle(double radius) {
         if (radius < 0) {
-            throw new IllegalArgumentException("Number cannot be less than 0.");
-        } else {
-            this.radius = radius;
+            throw new IllegalArgumentException("Number cannot be lower than 0.");
         }
+        this.radius = radius;
     }
 
     @Override

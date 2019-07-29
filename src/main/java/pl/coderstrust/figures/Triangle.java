@@ -4,11 +4,13 @@ public class Triangle implements Figure {
     private double base;
     private double height;
 
-    Triangle(double base, double height) {
-        if (base < 0 || height < 0) {
-            throw new IllegalArgumentException("Number cannot be less than 0.");
-        } else {
-            this.base = base;
+    public Triangle(double base, double height) {
+        if (base < 0) {
+            throw new IllegalArgumentException("Number cannot be lower than 0.");
+        }
+        this.base = base;
+        if (height < 0) {
+            throw new IllegalArgumentException("Number cannot be lower than 0.");
         }
         this.height = height;
     }
