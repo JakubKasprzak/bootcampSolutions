@@ -7,52 +7,26 @@ import static org.junit.Assert.assertEquals;
 class PolymorphismTest {
 
     @Test
-    void polymorphismSquareTest() {
+    void polymorphismTest() {
         //given
-        Square square = new Square(4);
-
-        //when
-        Figure figureSquare = new Square(4);
-        Rectangle rectangleSquare = new Square(4);
-
-        //then
-        assertEquals(square.calculateArea(), figureSquare.calculateArea(), 0.01);
-        assertEquals(square.calculateArea(), rectangleSquare.calculateArea(), 0.01);
-    }
-
-    @Test
-    void polymorphismCircleTest() {
-        //given
-        Circle circle = new Circle(4);
-
-        //when
         Figure figureCircle = new Circle(4);
+        Figure figureRectangle = new Rectangle(4, 3);
+        Figure figureSquare = new Square(4);
+        Figure figureTrapezoid = new Trapezoid(4, 3, 5);
+        Figure figureTriangle = new Triangle(4, 3);
+
+        //when
+        Circle circle = new Circle(4);
+        Rectangle rectangle = new Rectangle(4, 3);
+        Square square = new Square(4);
+        Trapezoid trapezoid = new Trapezoid(4, 3, 5);
+        Triangle triangle = new Triangle(4, 3);
 
         //then
         assertEquals(circle.calculateArea(), figureCircle.calculateArea(), 0.01);
-    }
-
-    @Test
-    void polymorphismTriangleTest() {
-        //given
-        Triangle triangle = new Triangle(4, 3);
-
-        //when
-        Figure figureTriangle = new Triangle(4, 3);
-
-        //then
-        assertEquals(triangle.calculateArea(), figureTriangle.calculateArea(), 0.01);
-    }
-
-    @Test
-    void polymorphismTrapezoidTest() {
-        //given
-        Trapezoid trapezoid = new Trapezoid(4, 3, 5);
-
-        //when
-        Figure figureTrapezoid = new Trapezoid(4, 3, 5);
-
-        //then
+        assertEquals(rectangle.calculateArea(), figureRectangle.calculateArea(), 0.01);
+        assertEquals(square.calculateArea(), figureSquare.calculateArea(), 0.01);
         assertEquals(trapezoid.calculateArea(), figureTrapezoid.calculateArea(), 0.01);
+        assertEquals(triangle.calculateArea(), figureTriangle.calculateArea(), 0.01);
     }
 }
