@@ -6,8 +6,6 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 class IntegrationTest {
 
@@ -20,12 +18,18 @@ class IntegrationTest {
         String resultFilePath = "src/test/resources/output.txt";
         File result = new File(resultFilePath);
         //when
-        List<String> resultList = FileProcessor.readLinesFromFile(inputFilePath);
-        List<String> resultLines = new ArrayList<>();
-        for (String line : resultList) {
-            resultLines.add(NumbersProcessor.processLine(line));
-        }
-        FileProcessor.writeLinesToFile(resultLines, resultFilePath);
+        FileProcessor fileProcessor = new FileProcessor();
+        NumbersProcessor numbersProcessor = new NumbersProcessor();
+        Processor processor = new Processor(numbersProcessor, fileProcessor);
+        processor.process(inputFilePath, resultFilePath);
+
+//        List<String> resultList = FileProcessor.readLinesFromFile(inputFilePath);
+//        List<String> resultLines = new ArrayList<>();
+//        for (String line : resultList) {
+//            resultLines.add(NumbersProcessor.processLine(line));
+//        }
+//        FileProcessor.writeLinesToFile(resultLines, resultFilePath);
+
         //then
         FileUtils.contentEquals(input, result);
     }
