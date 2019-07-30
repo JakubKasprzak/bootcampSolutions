@@ -5,10 +5,15 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-class MyOwnArrayList<T> implements List<T> {
-    private Object[] objects;
+class MyOwnArray<T> implements List<T> {
+    private Object[] objects = {};
     private int size = 0;
     private final static int DEFAULT_SIZE = 10;
+    private int totalArraySize = DEFAULT_SIZE;
+
+    public MyOwnArray() {
+        objects = new Object[DEFAULT_SIZE];
+    }
 
     @Override
     public int size() {
@@ -177,14 +182,13 @@ class MyOwnArrayList<T> implements List<T> {
     }
 
     private void resize() {
-        int arraySize = DEFAULT_SIZE;
-        if (size >= arraySize) {
-            Object[] newValues = new Object[size * 3 / 2 + 1];
+        if (size >= totalArraySize) {
+            Object[] newValues = new Object[size * 2];
             System.arraycopy(objects, 0, newValues, 0, size);
             objects = newValues;
         }
-        if (size >= DEFAULT_SIZE && size < arraySize / 4) {
-            Object[] newValues = new Object[size * 3 / 2 + 1];
+        if (size >= DEFAULT_SIZE && size < totalArraySize / 4) {
+            Object[] newValues = new Object[size / 2];
             System.arraycopy(objects, 0, newValues, 0, size);
             objects = newValues;
         }
