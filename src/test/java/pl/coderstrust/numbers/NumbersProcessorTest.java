@@ -4,7 +4,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.stream.Stream;
 
@@ -37,9 +36,26 @@ class NumbersProcessorTest {
 
     @ParameterizedTest
     @DisplayName("Should return empty string for invalid line.")
-    @ValueSource(strings = {"", "                   ", " a sdfhdsu ahl@#$#$%sdhdsh.,  dfwrf fhv"})
-    void shouldReturnEmptyStringForInvalidLine(String strings) {
-        String expected = "";
-        assertEquals(expected, numbersProcessor.processLine(strings));
+    @MethodSource("invalidLines")
+    void shouldReturnEmptyStringForInvalidLine(String line) {
+        assertEquals("", numbersProcessor.processLine(line));
+    }
+
+    private static Stream<Arguments> invalidLines() {
+        String line1 = "";
+        String line2 = "                   ";
+        String line3 = " a sdfhdsu ahl@#$#$%sdhdsh.,  dfwrf fhv";
+        String line4 = " ";
+        String line5 = "1 2 3 d 5";
+        String line6 = "2 % 3 w";
+
+        return Stream.of(
+                Arguments.of(line1),
+                Arguments.of(line2),
+                Arguments.of(line3),
+                Arguments.of(line4),
+                Arguments.of(line5),
+                Arguments.of(line6),
+                Arguments.of((Object) null));
     }
 }

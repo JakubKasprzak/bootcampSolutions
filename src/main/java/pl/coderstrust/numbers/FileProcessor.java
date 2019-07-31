@@ -14,8 +14,15 @@ import java.util.Scanner;
 public class FileProcessor {
 
     public List<String> readLinesFromFile(String filePath) throws FileNotFoundException {
+        if (filePath.equals("")) {
+            throw new IllegalArgumentException("File path is not valid.");
+        }
+        if (filePath.equals(null)) {
+            throw new IllegalArgumentException("File path is not valid.");
+        }
         List<String> list = new ArrayList<>();
-        try (Scanner scanner = new Scanner(new File(filePath))) {
+        try (
+                Scanner scanner = new Scanner(new File(filePath))) {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 list.add(line);
@@ -25,6 +32,15 @@ public class FileProcessor {
     }
 
     public void writeLinesToFile(List<String> lines, String filePath) throws IOException {
+        if (filePath.equals("")) {
+            throw new IllegalArgumentException("File path is not valid.");
+        }
+        if (filePath.equals(null)) {
+            throw new IllegalArgumentException("File path is not valid.");
+        }
+        if (lines == null) {
+            throw new IllegalArgumentException("List cannot be null.");
+        }
         Path result = Paths.get(filePath);
         Files.write(result, lines, StandardCharsets.UTF_8);
     }

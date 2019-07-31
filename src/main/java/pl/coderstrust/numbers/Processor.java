@@ -9,30 +9,34 @@ public class Processor {
     private FileProcessor fileProcessor;
 
     public Processor(NumbersProcessor numbersProcessor, FileProcessor fileProcessor) {
+        if (numbersProcessor == null) {
+            throw new IllegalArgumentException("NumbersProcessor cannot be null.");
+        }
+        if (fileProcessor == null) {
+            throw new IllegalArgumentException("FileProcessor cannot be null.");
+        }
         this.numbersProcessor = numbersProcessor;
         this.fileProcessor = fileProcessor;
     }
 
     void process(String inputFilePath, String resultFilePath) throws IOException {
-        if (!arePathsValid(inputFilePath, resultFilePath)) {
+        if (inputFilePath.equals("")) {
             throw new IllegalArgumentException("File path is not valid.");
+        }
+        if (inputFilePath.equals(null)) {
+            throw new IllegalArgumentException("File path cannot be null.");
+        }
+        if (resultFilePath.equals("")) {
+            throw new IllegalArgumentException("File path is not valid.");
+        }
+        if (resultFilePath.equals(null)) {
+            throw new IllegalArgumentException("File path cannot be null.");
         }
         List<String> linesFromFile = fileProcessor.readLinesFromFile(inputFilePath);
         List<String> resultLines = new ArrayList<>();
-        for (
-                String line : linesFromFile) {
+        for (String line : linesFromFile) {
             resultLines.add(numbersProcessor.processLine(line));
         }
         fileProcessor.writeLinesToFile(resultLines, resultFilePath);
-    }
-
-    private static boolean arePathsValid(String line1, String line2) {
-        if (line1.equals("")) {
-            return false;
-        }
-        if (line2.equals("")) {
-            return false;
-        }
-        return true;
     }
 }

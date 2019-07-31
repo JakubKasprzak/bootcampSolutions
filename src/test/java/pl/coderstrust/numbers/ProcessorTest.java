@@ -14,7 +14,7 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class ProcessorTest {
-    private String inputFilePath = "src/test/resources/numbersFromFileTest.txt";
+    private String inputFilePath = "src/test/resources/someNumbersTest.txt";
     private String resultFilePath = "src/test/resources/resultTest.txt";
     @Mock
     NumbersProcessor numbersProcessor;
