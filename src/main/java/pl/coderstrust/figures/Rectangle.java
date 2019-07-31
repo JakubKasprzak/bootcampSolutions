@@ -6,12 +6,12 @@ public class Rectangle implements Figure {
 
     public Rectangle(double length, double width) {
         if (length < 0) {
-            throw new IllegalArgumentException("Number cannot be lower than 0.");
+            throw new IllegalArgumentException("Length cannot be lower than 0.");
+        }
+        if (width < 0) {
+            throw new IllegalArgumentException("Width cannot be lower than 0.");
         }
         this.length = length;
-        if (width < 0) {
-            throw new IllegalArgumentException("Number cannot be lower than 0.");
-        }
         this.width = width;
     }
 

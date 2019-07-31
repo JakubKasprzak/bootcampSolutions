@@ -7,7 +7,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class TriangleTest {
 
@@ -25,15 +26,15 @@ class TriangleTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {-1, -10, -12})
-    void shouldReturnIllegalArgumentExceptionForInvalidBaseArgument(double base) {
+    @ValueSource(doubles = {-1, -10, -12})
+    void shouldThrowIllegalArgumentExceptionForInvalidBaseArgument(double base) {
         IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> new Triangle(5, base).calculateArea());
         assertEquals("Number cannot be less than 0.", thrown.getMessage());
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {-1, -10, -12})
-    void shouldReturnIllegalArgumentExceptionForInvalidHeightArgument(double height) {
+    @ValueSource(doubles = {-1, -10, -12})
+    void shouldThrowIllegalArgumentExceptionForInvalidHeightArgument(double height) {
         IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> new Triangle(height, 5).calculateArea());
         assertEquals("Number cannot be less than 0.", thrown.getMessage());
     }

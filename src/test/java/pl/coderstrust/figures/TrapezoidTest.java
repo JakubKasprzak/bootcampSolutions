@@ -7,7 +7,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class TrapezoidTest {
 
@@ -25,23 +26,23 @@ class TrapezoidTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {-1, -10, -12})
-    void shouldReturnIllegalArgumentExceptionForInvalidBase1Argument(double base1) {
-        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> new Trapezoid(base1,5,5).calculateArea());
+    @ValueSource(doubles = {-1, -10, -12})
+    void shouldThrowIllegalArgumentExceptionForInvalidBase1Argument(double base1) {
+        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> new Trapezoid(base1, 5, 5).calculateArea());
         assertEquals("Number cannot be less than 0.", thrown.getMessage());
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {-1, -10, -12})
-    void shouldReturnIllegalArgumentExceptionForInvalidBase2Argument(double base2) {
-        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> new Trapezoid(5, base2,5).calculateArea());
+    @ValueSource(doubles = {-1, -10, -12})
+    void shouldThrowIllegalArgumentExceptionForInvalidBase2Argument(double base2) {
+        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> new Trapezoid(5, base2, 5).calculateArea());
         assertEquals("Number cannot be less than 0.", thrown.getMessage());
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {-1, -10, -12})
-    void shouldReturnIllegalArgumentExceptionForInvalidHeightArgument(double height) {
-        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> new Trapezoid(5,5, height).calculateArea());
+    @ValueSource(doubles = {-1, -10, -12})
+    void shouldThrowIllegalArgumentExceptionForInvalidHeightArgument(double height) {
+        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> new Trapezoid(5, 5, height).calculateArea());
         assertEquals("Number cannot be less than 0.", thrown.getMessage());
     }
 }

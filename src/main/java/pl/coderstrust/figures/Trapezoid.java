@@ -7,16 +7,16 @@ public class Trapezoid implements Figure {
 
     public Trapezoid(double base1, double base2, double height) {
         if (base1 < 0) {
-            throw new IllegalArgumentException("Number cannot be lower than 0.");
+            throw new IllegalArgumentException("Base1 cannot be lower than 0.");
+        }
+        if (base2 < 0) {
+            throw new IllegalArgumentException("Base2 cannot be lower than 0.");
+        }
+        if (height < 0) {
+            throw new IllegalArgumentException("Height cannot be lower than 0.");
         }
         this.base1 = base1;
-        if (base2 < 0) {
-            throw new IllegalArgumentException("Number cannot be lower than 0.");
-        }
         this.base2 = base2;
-        if (height < 0) {
-            throw new IllegalArgumentException("Number cannot be lower than 0.");
-        }
         this.height = height;
     }
 

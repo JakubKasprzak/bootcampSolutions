@@ -6,6 +6,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.stream.Stream;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -25,8 +26,8 @@ class CircleTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {-1, -10, -12})
-    void shouldReturnIllegalArgumentExceptionForInvalidArgument(double radius) {
+    @ValueSource(doubles = {-1, -10, -12})
+    void shouldThrowIllegalArgumentExceptionForInvalidArgument(double radius) {
         IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> new Circle(radius).calculateArea());
         assertEquals("Number cannot be less than 0.", thrown.getMessage());
     }

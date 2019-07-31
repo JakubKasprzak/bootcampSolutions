@@ -8,25 +8,15 @@ class PolymorphismTest {
 
     @Test
     void polymorphismTest() {
-        //given
-        Figure figureCircle = new Circle(4);
-        Figure figureRectangle = new Rectangle(4, 3);
-        Figure figureSquare = new Square(4);
-        Figure figureTrapezoid = new Trapezoid(4, 3, 5);
-        Figure figureTriangle = new Triangle(4, 3);
-
-        //when
-        Circle circle = new Circle(4);
-        Rectangle rectangle = new Rectangle(4, 3);
-        Square square = new Square(4);
-        Trapezoid trapezoid = new Trapezoid(4, 3, 5);
-        Triangle triangle = new Triangle(4, 3);
-
-        //then
-        assertEquals(circle.calculateArea(), figureCircle.calculateArea(), 0.01);
-        assertEquals(rectangle.calculateArea(), figureRectangle.calculateArea(), 0.01);
-        assertEquals(square.calculateArea(), figureSquare.calculateArea(), 0.01);
-        assertEquals(trapezoid.calculateArea(), figureTrapezoid.calculateArea(), 0.01);
-        assertEquals(triangle.calculateArea(), figureTriangle.calculateArea(), 0.01);
+        Figure figure = new Circle(4);
+        assertEquals(50.26, figure.calculateArea(), 0.01);
+        figure = new Rectangle(4, 3);
+        assertEquals(12, figure.calculateArea(), 0.01);
+        figure = new Square(4);
+        assertEquals(16, figure.calculateArea(), 0.01);
+        figure = new Trapezoid(4, 3, 5);
+        assertEquals(17.5, figure.calculateArea(), 0.01);
+        figure = new Triangle(4, 3);
+        assertEquals(6, figure.calculateArea(), 0.01);
     }
 }
