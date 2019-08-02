@@ -28,14 +28,14 @@ class TrapezoidTest {
     @ParameterizedTest
     @ValueSource(doubles = {-1, -10, -12})
     void shouldThrowIllegalArgumentExceptionForInvalidBase1Argument(double base1) {
-        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> new Trapezoid(base1, 5, 5).calculateArea());
+        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> new Trapezoid(base1, 5, 5));
         assertEquals("Number cannot be less than 0.", thrown.getMessage());
     }
 
     @ParameterizedTest
     @ValueSource(doubles = {-1, -10, -12})
     void shouldThrowIllegalArgumentExceptionForInvalidBase2Argument(double base2) {
-        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> new Trapezoid(5, base2, 5).calculateArea());
+        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> new Trapezoid(5, base2, 5));
         assertEquals("Number cannot be less than 0.", thrown.getMessage());
     }
 

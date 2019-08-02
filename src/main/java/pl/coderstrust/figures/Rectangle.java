@@ -5,11 +5,11 @@ public class Rectangle implements Figure {
     private double length;
 
     public Rectangle(double length, double width) {
-        if (length < 0) {
-            throw new IllegalArgumentException("Length cannot be lower than 0.");
+        if (length <= 0) {
+            throw new IllegalArgumentException("Length cannot be lower or equal to zero.");
         }
-        if (width < 0) {
-            throw new IllegalArgumentException("Width cannot be lower than 0.");
+        if (width <= 0) {
+            throw new IllegalArgumentException("Width cannot be lower or equal to zero.");
         }
         this.length = length;
         this.width = width;

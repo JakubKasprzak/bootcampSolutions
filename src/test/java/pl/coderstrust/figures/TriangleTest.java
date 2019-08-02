@@ -28,7 +28,7 @@ class TriangleTest {
     @ParameterizedTest
     @ValueSource(doubles = {-1, -10, -12})
     void shouldThrowIllegalArgumentExceptionForInvalidBaseArgument(double base) {
-        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> new Triangle(5, base).calculateArea());
+        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> new Triangle(5, base));
         assertEquals("Number cannot be less than 0.", thrown.getMessage());
     }
 

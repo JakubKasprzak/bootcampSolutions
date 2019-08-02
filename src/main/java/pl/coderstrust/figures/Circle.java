@@ -5,8 +5,8 @@ public class Circle implements Figure {
     private static final double pi = Math.PI;
 
     public Circle(double radius) {
-        if (radius < 0) {
-            throw new IllegalArgumentException("Radius cannot be lower than 0.");
+        if (radius <= 0) {
+            throw new IllegalArgumentException("Radius cannot be lower or equal to zero.");
         }
         this.radius = radius;
     }

@@ -29,14 +29,14 @@ class RectangleTest {
     @ParameterizedTest
     @ValueSource(doubles = {-1, -10, -12})
     void shouldThrowIllegalArgumentExceptionForInvalidWidthArgument(double width) {
-        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> new Rectangle(5, width).calculateArea());
+        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> new Rectangle(5, width));
         assertEquals("Number cannot be less than 0.", thrown.getMessage());
     }
 
     @ParameterizedTest
     @ValueSource(doubles = {-1, -10, -12})
     void shouldThrowIllegalArgumentExceptionForInvalidLengthArgument(double length) {
-        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> new Rectangle(length, 5).calculateArea());
+        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> new Rectangle(length, 5));
         assertEquals("Number cannot be less than 0.", thrown.getMessage());
     }
 }
