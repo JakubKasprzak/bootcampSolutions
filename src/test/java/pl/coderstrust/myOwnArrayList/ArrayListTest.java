@@ -2,7 +2,7 @@ package pl.coderstrust.myOwnArrayList;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -41,6 +41,32 @@ public class ArrayListTest {
     }
 
     @Test
+    public void shouldReturnFalseWhenIteratorHasNoNextIndex() {
+        List<Object> list = new MyOwnArray<>();
+        assertFalse(list.iterator().hasNext());
+    }
+
+    @Test
+    public void shouldReturnElementWhenIteratorHasNext() {
+        //given
+        List<Object> list = new MyOwnArray<>();
+        list.add("some element");
+        list.add("another element");
+        list.add("yet another element");
+        //when
+        Iterator iterator = list.iterator();
+        int i = 1;
+        StringBuilder sb = new StringBuilder();
+        while (iterator.hasNext()) {
+            sb.append(i).append(".").append(iterator.next().toString()).append(" ");
+            i++;
+        }
+        String resultLine = "1.some element 2.another element 3.yet another element ";
+        //then
+        assertEquals(resultLine, sb.toString());
+    }
+
+    @Test
     public void shouldReturnCorrectArrayContainingElementsFromList() {
         //given
         List<Object> list = new MyOwnArray<>();
@@ -50,7 +76,7 @@ public class ArrayListTest {
         Object[] expectedArray = new Object[list.size()];
         expectedArray[0] = element;
         //then
-        assertTrue(Arrays.equals(expectedArray, list.toArray()));
+        assertArrayEquals(expectedArray, list.toArray());
     }
 
     @Test
@@ -60,7 +86,7 @@ public class ArrayListTest {
         //when
         list.add("some element");
         //then
-        assertTrue(list.get(list.size() - 1) == "some element");
+        assertSame("some element", list.get(list.size() - 1));
     }
 
     @Test
@@ -73,6 +99,28 @@ public class ArrayListTest {
         list.remove(element);
         //then
         assertFalse(list.contains(element));
+    }
+
+    @Test
+    public void shouldAddAllCollectionToList() {
+        //given
+        List<Object> list = new MyOwnArray<>();
+        list.add("Some element on list.");
+        List<Object> listToAdd = new MyOwnArray<>();
+        listToAdd.add("Some element od list to add.");
+        listToAdd.add("Another element od list to add.");
+        //when
+        list.addAll(listToAdd);
+        Iterator iterator = list.iterator();
+        int i = 1;
+        StringBuilder sb = new StringBuilder();
+        while (iterator.hasNext()) {
+            sb.append(i).append(".").append(iterator.next().toString()).append(" ");
+            i++;
+        }
+        String resultLine = "1.Some element on list. 2.Some element od list to add. 3.Another element od list to add. ";
+        //then
+        assertEquals(resultLine, sb.toString());
     }
 
     @Test
@@ -122,7 +170,7 @@ public class ArrayListTest {
         list.add(element);
         list.add(0, newElement);
         //then
-        assertTrue(list.get(0) == "new element");
+        assertSame("new element", list.get(0));
     }
 
     @Test
@@ -160,15 +208,13 @@ public class ArrayListTest {
     public void shouldReturnLastIndexOfGivenElement() {
         //given
         List<Object> list = new MyOwnArray<>();
-        System.out.println(list.getA);
         Object element = "some element";
-        Object anotheElement = "another element";
-        Object yetAnotheElement = "yet another element";
+        Object anotherElement = "another element";
         //when
         list.add(element);
-        list.add(anotheElement);
-        list.add(yetAnotheElement);
+        list.add(anotherElement);
+        list.add(element);
         //then
-        assertEquals(1, list.lastIndexOf(anotheElement));
+        assertEquals(2, list.lastIndexOf(element));
     }
 }
