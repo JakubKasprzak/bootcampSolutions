@@ -19,17 +19,17 @@ public class Processor {
         this.fileProcessor = fileProcessor;
     }
 
-    void process(String inputFilePath, String resultFilePath) throws IOException {
-        if (inputFilePath.equals("")) {
+    public void process(String inputFilePath, String resultFilePath) throws IOException {
+        if (inputFilePath == "") {
             throw new IllegalArgumentException("File path is not valid.");
         }
-        if (inputFilePath.equals(null)) {
+        if (inputFilePath == null) {
             throw new IllegalArgumentException("File path cannot be null.");
         }
-        if (resultFilePath.equals("")) {
+        if (resultFilePath == "") {
             throw new IllegalArgumentException("File path is not valid.");
         }
-        if (resultFilePath.equals(null)) {
+        if (resultFilePath == null) {
             throw new IllegalArgumentException("File path cannot be null.");
         }
         List<String> linesFromFile = fileProcessor.readLinesFromFile(inputFilePath);

@@ -14,15 +14,12 @@ public class NumbersProcessor {
             int number = 0;
             while (scanner.hasNextInt()) {
                 number = scanner.nextInt();
-                if (sum == 0) {
-                    sum += number;
-                    resultLine.append(number);
-                } else if (!scanner.hasNext()) {
-                    sum += number;
-                    resultLine.append("+").append(number).append("=");
+                sum += number;
+                resultLine.append(number);
+                if (scanner.hasNextInt()) {
+                    resultLine.append("+");
                 } else {
-                    sum += number;
-                    resultLine.append("+").append(number);
+                    resultLine.append("=");
                 }
             }
         }

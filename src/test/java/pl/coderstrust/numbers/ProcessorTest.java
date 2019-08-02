@@ -14,8 +14,7 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class ProcessorTest {
-    private String inputFilePath = "src/test/resources/someNumbersTest.txt";
-    private String resultFilePath = "src/test/resources/resultTest.txt";
+
     @Mock
     NumbersProcessor numbersProcessor;
 
@@ -28,6 +27,8 @@ class ProcessorTest {
     @Test
     void shouldProcessProvidedInputFileAndSaveResultToProvidedOutputFile() throws IOException {
         // given
+        String inputFilePath = "src/test/resources/someNumbersTest.txt";
+        String resultFilePath = "src/test/resources/resultTest.txt";
         when(fileProcessor.readLinesFromFile(inputFilePath)).thenReturn(Arrays.asList("1 2 3", "4 5 6"));
         Mockito.doReturn("1+2+3=6").when(numbersProcessor).processLine("1 2 3");
         Mockito.doReturn("4+5+6=15").when(numbersProcessor).processLine("4 5 6");

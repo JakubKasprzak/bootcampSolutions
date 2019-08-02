@@ -14,29 +14,28 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class ProcessorIT {
     private Processor processor;
 
-    @Test
-    @DisplayName("Should return new file with equations made of numbers extracted from given file.")
-    void shouldProcessProvidedInputFileAndSaveResultToProvidedOutputFile() throws IOException {
-        //given
-        NumbersProcessor numberProcessor = new NumbersProcessor();
-        FileProcessor fileProcessor = new FileProcessor();
-        Processor processor = new Processor(numberProcessor, fileProcessor);
-        String inputFile = "src/test/resources/1000.txt";
-        String outputFile = "src/test/resources/output.txt";
-        String expectedFile = "src/test/resources/expected.txt";
-        //when
-        processor.process(inputFile, outputFile);
-        //then
-        byte[] expected = Files.readAllBytes(Paths.get(expectedFile));
-        byte[] actual = Files.readAllBytes(Paths.get(outputFile));
-        assertArrayEquals(expected, actual);
-    }
-
     @BeforeEach
     void setup() {
         FileProcessor fileProcessor = new FileProcessor();
         NumbersProcessor numbersProcessor = new NumbersProcessor();
         processor = new Processor(numbersProcessor, fileProcessor);
+    }
+
+    @Test
+    @DisplayName("Should return new file with equations made of numbers extracted from given file.")
+    void shouldProcessProvidedInputFileAndSaveResultToProvidedOutputFile() throws IOException {
+        //given
+        String inputFile = "src/test/resources/1000.txt";
+        String outputFile = "src/test/resources/output.txt";
+        String expectedFile = "src/test/resources/expected.txt";
+
+        //when
+        processor.process(inputFile, outputFile);
+
+        //then
+        byte[] expected = Files.readAllBytes(Paths.get(expectedFile));
+        byte[] actual = Files.readAllBytes(Paths.get(outputFile));
+        assertArrayEquals(expected, actual);
     }
 
     @Test

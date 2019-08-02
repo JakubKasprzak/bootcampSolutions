@@ -14,15 +14,14 @@ import java.util.Scanner;
 public class FileProcessor {
 
     public List<String> readLinesFromFile(String filePath) throws FileNotFoundException {
-        if (filePath.equals("")) {
+        if (filePath == "") {
             throw new IllegalArgumentException("File path is not valid.");
         }
-        if (filePath.equals(null)) {
-            throw new IllegalArgumentException("File path is not valid.");
+        if (filePath == null) {
+            throw new IllegalArgumentException("File path cannot be null.");
         }
         List<String> list = new ArrayList<>();
-        try (
-                Scanner scanner = new Scanner(new File(filePath))) {
+        try (Scanner scanner = new Scanner(new File(filePath))) {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 list.add(line);
@@ -32,11 +31,11 @@ public class FileProcessor {
     }
 
     public void writeLinesToFile(List<String> lines, String filePath) throws IOException {
-        if (filePath.equals("")) {
+        if (filePath == "") {
             throw new IllegalArgumentException("File path is not valid.");
         }
-        if (filePath.equals(null)) {
-            throw new IllegalArgumentException("File path is not valid.");
+        if (filePath == null) {
+            throw new IllegalArgumentException("File path cannot be null.");
         }
         if (lines == null) {
             throw new IllegalArgumentException("List cannot be null.");
