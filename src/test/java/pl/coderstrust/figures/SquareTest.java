@@ -26,9 +26,9 @@ class SquareTest {
     }
 
     @ParameterizedTest
-    @ValueSource(doubles = {-1, -10, -12})
+    @ValueSource(doubles = {0, -1, -10, -12})
     void shouldThrowIllegalArgumentExceptionForInvalidArgument(double radius) {
         IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> new Square(radius));
-        assertEquals("Number cannot be less than 0.", thrown.getMessage());
+        assertEquals("Length cannot be lower or equal to zero.", thrown.getMessage());
     }
 }

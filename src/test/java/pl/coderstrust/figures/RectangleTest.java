@@ -23,20 +23,20 @@ class RectangleTest {
         return Stream.of(
                 Arguments.of(1.05, 2.12, 2.2260000000000004),
                 Arguments.of(2, 4.45, 8.9),
-                Arguments.of(0, 12.56, 0));
+                Arguments.of(3, 12.56, 37.68));
     }
 
     @ParameterizedTest
-    @ValueSource(doubles = {-1, -10, -12})
+    @ValueSource(doubles = {0, -1, -10, -12})
     void shouldThrowIllegalArgumentExceptionForInvalidWidthArgument(double width) {
         IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> new Rectangle(5, width));
-        assertEquals("Number cannot be less than 0.", thrown.getMessage());
+        assertEquals("Width cannot be lower or equal to zero.", thrown.getMessage());
     }
 
     @ParameterizedTest
-    @ValueSource(doubles = {-1, -10, -12})
+    @ValueSource(doubles = {0, -1, -10, -12})
     void shouldThrowIllegalArgumentExceptionForInvalidLengthArgument(double length) {
         IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> new Rectangle(length, 5));
-        assertEquals("Number cannot be less than 0.", thrown.getMessage());
+        assertEquals("Length cannot be lower or equal to zero.", thrown.getMessage());
     }
 }
