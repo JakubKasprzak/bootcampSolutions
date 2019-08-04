@@ -39,12 +39,12 @@ class ProcessorIT {
     }
 
     @Test
-    void processorMethodShouldThrowExceptionForNullAsInputFilePath() {
+    void processMethodShouldThrowExceptionForNullAsInputFilePath() {
         assertThrows(IllegalArgumentException.class, () -> processor.process(null, "file.txt"));
     }
 
     @Test
-    void processorMethodShouldThrowExceptionForNullAsResultFilePath() {
+    void processMethodShouldThrowExceptionForNullAsResultFilePath() {
         assertThrows(IllegalArgumentException.class, () -> processor.process("file.txt", null));
     }
 }

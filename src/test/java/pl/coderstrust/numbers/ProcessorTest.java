@@ -10,6 +10,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.io.IOException;
 import java.util.Arrays;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -41,5 +42,15 @@ class ProcessorTest {
         verify(numbersProcessor, times(1)).processLine("1 2 3");
         verify(numbersProcessor, times(1)).processLine("4 5 6");
         verify(fileProcessor).writeLinesToFile(Arrays.asList("1+2+3=6", "4+5+6=15"), resultFilePath);
+    }
+
+    @Test
+    void processorShouldThrowExceptionForNullAsNumbersProcessor() {
+        assertThrows(IllegalArgumentException.class, () -> processor = new Processor(null, fileProcessor));
+    }
+
+    @Test
+    void processorShouldThrowExceptionForNullAsFileProcessor() {
+        assertThrows(IllegalArgumentException.class, () -> processor = new Processor(numbersProcessor, null));
     }
 }

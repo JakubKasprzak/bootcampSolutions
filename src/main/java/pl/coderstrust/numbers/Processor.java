@@ -10,27 +10,21 @@ public class Processor {
 
     public Processor(NumbersProcessor numbersProcessor, FileProcessor fileProcessor) {
         if (numbersProcessor == null) {
-            throw new IllegalArgumentException("NumbersProcessor cannot be null.");
+            throw new IllegalArgumentException("Numbers Processor cannot be null.");
         }
         if (fileProcessor == null) {
-            throw new IllegalArgumentException("FileProcessor cannot be null.");
+            throw new IllegalArgumentException("File Processor cannot be null.");
         }
         this.numbersProcessor = numbersProcessor;
         this.fileProcessor = fileProcessor;
     }
 
     public void process(String inputFilePath, String resultFilePath) throws IOException {
-        if (inputFilePath == "") {
-            throw new IllegalArgumentException("File path is not valid.");
-        }
         if (inputFilePath == null) {
-            throw new IllegalArgumentException("File path cannot be null.");
-        }
-        if (resultFilePath == "") {
-            throw new IllegalArgumentException("File path is not valid.");
+            throw new IllegalArgumentException("Input file path cannot be null.");
         }
         if (resultFilePath == null) {
-            throw new IllegalArgumentException("File path cannot be null.");
+            throw new IllegalArgumentException("Result file path cannot be null.");
         }
         List<String> linesFromFile = fileProcessor.readLinesFromFile(inputFilePath);
         List<String> resultLines = new ArrayList<>();
