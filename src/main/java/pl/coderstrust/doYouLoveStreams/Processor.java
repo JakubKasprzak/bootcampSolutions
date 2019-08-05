@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Processor {
@@ -38,9 +41,15 @@ public class Processor {
         if (resultFilePath == null) {
             throw new IllegalArgumentException("Result file path cannot be null.");
         }
-        Stream<String> inputStream = Files.lines(inputFilePath);
-        inputStream = inputStream.filter(line -> line.matches("^[\\d\\s]+"));
-        System.out.println(inputStream.toArray().toString());
+
+        Stream linesFromFile = Files.lines(inputFilePath).filter(line -> line.matches("^[\\d\\s]+"));
+        List list = linesFromFile.forEach(line -> {
+            Arrays.stream(line.toString().split(","))
+                    .map(String::trim)
+                    .toArray(String[]::new);
+                }
+        )));
+        System.out.println(linesFromFile.toArray().toString());
 
 
 //        List<String> linesFromFile = fileProcessor.readLinesFromFile(inputFilePath);
