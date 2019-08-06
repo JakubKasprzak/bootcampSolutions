@@ -10,53 +10,46 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class IsIPAddressTest {
+class IsIPAddressTest {
 
     @Ignore
     @Test
-    public void shouldReturnTrueIfLineIsAnIPAddressLongTest() {
-        String wholeNumber;
+    void shouldCheckAllIpAddresses() {
         for (int i = 0; i <= 255; i++) {
             for (int j = 0; j <= 255; j++) {
                 for (int k = 0; k <= 255; k++) {
                     for (int l = 0; l <= 255; l++) {
-                        wholeNumber = i + "." + j + "." + k + "." + l;
-                        assertTrue(IpAddressValidator.isIpAddress(wholeNumber));
+                        assertTrue(IpAddressValidator.isIpAddress(String.format("%d.%d.%d.%d", i, j, k, l)));
                     }
                 }
             }
         }
     }
 
-    @Test
-    public void shouldReturnTrueIfLineIsAnIPAddress() {
+    @ParameterizedTest
+    @ValueSource(strings = {"%d.1.1.1", "1.%d.1.1", "1.1.%d.1", "1.1.1.%d"})
+    void smartTestForIpAddress(String ipAddressTemplate) {
         for (int i = 0; i <= 255; i++) {
-            String first = i + ".1.1.1";
-            String second = "1." + i + ".1.1";
-            String third = "1.1." + i + ".1";
-            String fourth = "1.1.1." + i;
-            assertTrue(IpAddressValidator.isIpAddress(first));
-            assertTrue(IpAddressValidator.isIpAddress(second));
-            assertTrue(IpAddressValidator.isIpAddress(third));
-            assertTrue(IpAddressValidator.isIpAddress(fourth));
+            String ipAddress = String.format(ipAddressTemplate, i);
+            assertTrue(IpAddressValidator.isIpAddress(ipAddress));
         }
     }
 
     @Test
-    public void shouldThrowExceptionForNullAsLine() {
+    void shouldThrowExceptionForNullAsInput() {
         IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> IpAddressValidator.isIpAddress(null));
         assertEquals("Line cannot be null or empty.", thrown.getMessage());
     }
 
-    @Test
-    public void shouldThrowExceptionForEmptyLine() {
-        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> IpAddressValidator.isIpAddress(""));
-        assertEquals("Line cannot be null or empty.", thrown.getMessage());
+    @ParameterizedTest
+    @ValueSource(strings = {"h.h.h.h", "242345", "sdgasg", "0", "123.390.680.999", "", "            "})
+    void shouldReturnFalseForInvalidIpAddress(String ipAddress) {
+        assertFalse(IpAddressValidator.isIpAddress(ipAddress));
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"h.h.h.h", "242345", "sdgasg", "0", "123.390.680.999"})
-    public void shouldReturnFalseForInvalidLines(String argument) {
-        assertFalse(IpAddressValidator.isIpAddress(argument));
+    @ValueSource(strings = {"1.1.1.1", "1.2.3.4", "255.255.255.255", "0.0.0.0", "123.190.80.99"})
+    void shouldReturnTrueForValidIpAddress(String ipAddress) {
+        assertTrue(IpAddressValidator.isIpAddress(ipAddress));
     }
 }
