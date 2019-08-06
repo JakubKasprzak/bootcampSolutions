@@ -9,7 +9,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ProcessorIT {
     private Processor processor;
@@ -36,15 +35,5 @@ class ProcessorIT {
         byte[] expected = Files.readAllBytes(Paths.get(expectedFile));
         byte[] actual = Files.readAllBytes(Paths.get(outputFile));
         assertArrayEquals(expected, actual);
-    }
-
-    @Test
-    void processMethodShouldThrowExceptionForNullAsInputFilePath() {
-        assertThrows(IllegalArgumentException.class, () -> processor.process(null, "file.txt"));
-    }
-
-    @Test
-    void processMethodShouldThrowExceptionForNullAsResultFilePath() {
-        assertThrows(IllegalArgumentException.class, () -> processor.process("file.txt", null));
     }
 }
