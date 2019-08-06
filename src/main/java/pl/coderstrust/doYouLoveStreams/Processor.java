@@ -20,21 +20,22 @@ public class Processor {
 
 
     }
-//    private NumbersProcessor numbersProcessor;
-////    private FileProcessor fileProcessor;
-////
-////    public Processor(NumbersProcessor numbersProcessor, FileProcessor fileProcessor) {
-////        if (numbersProcessor == null) {
-////            throw new IllegalArgumentException("Numbers Processor cannot be null.");
-////        }
-////        if (fileProcessor == null) {
-////            throw new IllegalArgumentException("File Processor cannot be null.");
-////        }
-////        this.numbersProcessor = numbersProcessor;
-////        this.fileProcessor = fileProcessor;
-////    }
 
-    public static void process(Path inputFilePath, Path resultFilePath) throws IOException {
+    private NumbersProcessor numbersProcessor;
+    private FileProcessor fileProcessor;
+
+    public Processor(NumbersProcessor numbersProcessor, FileProcessor fileProcessor) {
+        if (numbersProcessor == null) {
+            throw new IllegalArgumentException("Numbers Processor cannot be null.");
+        }
+        if (fileProcessor == null) {
+            throw new IllegalArgumentException("File Processor cannot be null.");
+        }
+        this.numbersProcessor = numbersProcessor;
+        this.fileProcessor = fileProcessor;
+    }
+
+    public void process(Path inputFilePath, Path resultFilePath) throws IOException {
         if (inputFilePath == null) {
             throw new IllegalArgumentException("Input file path cannot be null.");
         }
@@ -42,11 +43,25 @@ public class Processor {
             throw new IllegalArgumentException("Result file path cannot be null.");
         }
 
-        Stream linesFromFile = Files.lines(inputFilePath).filter(line -> line.matches("^[\\d\\s]+"));
+        List<String> linesFromFile = Files.lines(inputFilePath)
+                .filter(line -> line.matches("^[\\d\\s]+"))
+                .map(String::trim)
+                .map(line -> numbersProcessor.processLine(line))
+//                .Arrays.stream(line.toString().split(","))
+                .collect(Collectors.toList());
+
+
+        //ściągnij plugin save actions
+        //map to zamiana obiektu w inny np. typ integer zmienia na stringi, map nie kończy streama
+        //filter przepuszcza tylko obiekty które spełniają warunek
+        //forEach musi być na końcu
+        //collect też na końcu
+
+
         List list = linesFromFile.forEach(line -> {
-            Arrays.stream(line.toString().split(","))
-                    .map(String::trim)
-                    .toArray(String[]::new);
+                    Arrays.stream(line.toString().split(","))
+                            .map(String::trim)
+                            .toArray(String[]::new);
                 }
         )));
         System.out.println(linesFromFile.toArray().toString());
