@@ -1,0 +1,7 @@
+Move disc 1 from pile A to pile C
+Move disc 2 from pile A to pile B
+Move disc 1 from pile C to pile B
+Move disc 3 from pile A to pile C
+Move disc 1 from pile B to pile A
+Move disc 2 from pile B to pile C
+Move disc 1 from pile A to pile C
