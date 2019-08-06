@@ -10,7 +10,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class IsIPAddressTest {
+class IpAddressValidatorTest {
 
     @Ignore
     @Test
@@ -38,7 +38,7 @@ class IsIPAddressTest {
     @Test
     void shouldThrowExceptionForNullAsInput() {
         IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> IpAddressValidator.isIpAddress(null));
-        assertEquals("Line cannot be null or empty.", thrown.getMessage());
+        assertEquals("Line cannot be null.", thrown.getMessage());
     }
 
     @ParameterizedTest
