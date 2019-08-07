@@ -1,4 +1,4 @@
-package pl.coderstrust.myOwnArrayList;
+package pl.coderstrust.myownarraylist;
 
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +12,7 @@ public class ArrayListTest {
     @Test
     public void shouldReturnCorrectArraySize() {
         //given
-        List<Object> list = new MyOwnArray<>();
+        List<Object> list = new ArrayList<>();
         //when
         list.add(null);
         //then
@@ -22,7 +22,7 @@ public class ArrayListTest {
     @Test
     public void shouldReturnFalseWhenListIsNotEmpty() {
         //given
-        List<Object> list = new MyOwnArray<>();
+        List<Object> list = new ArrayList<>();
         //when
         list.add(null);
         //then
@@ -32,7 +32,7 @@ public class ArrayListTest {
     @Test
     public void shouldReturnTrueWhenListContainsGivenElement() {
         //given
-        List<Object> list = new MyOwnArray<>();
+        List<Object> list = new ArrayList<>();
         //when
         Object element = "some element";
         list.add(element);
@@ -42,14 +42,14 @@ public class ArrayListTest {
 
     @Test
     public void shouldReturnFalseWhenIteratorHasNoNextIndex() {
-        List<Object> list = new MyOwnArray<>();
+        List<Object> list = new ArrayList<>();
         assertFalse(list.iterator().hasNext());
     }
 
     @Test
     public void shouldReturnElementWhenIteratorHasNext() {
         //given
-        List<Object> list = new MyOwnArray<>();
+        List<Object> list = new ArrayList<>();
         list.add("some element");
         list.add("another element");
         list.add("yet another element");
@@ -69,7 +69,7 @@ public class ArrayListTest {
     @Test
     public void shouldReturnCorrectArrayContainingElementsFromList() {
         //given
-        List<Object> list = new MyOwnArray<>();
+        List<Object> list = new ArrayList<>();
         Object element = "some element";
         list.add(element);
         //when
@@ -82,7 +82,7 @@ public class ArrayListTest {
     @Test
     public void shouldAddNewElementToList() {
         //given
-        List<Object> list = new MyOwnArray<>();
+        List<Object> list = new ArrayList<>();
         //when
         list.add("some element");
         //then
@@ -92,7 +92,7 @@ public class ArrayListTest {
     @Test
     public void shouldRemoveIndicatedElementFromList() {
         //given
-        List<Object> list = new MyOwnArray<>();
+        List<Object> list = new ArrayList<>();
         Object element = "some element";
         //when
         list.add(element);
@@ -104,9 +104,9 @@ public class ArrayListTest {
     @Test
     public void shouldAddAllCollectionToList() {
         //given
-        List<Object> list = new MyOwnArray<>();
+        List<Object> list = new ArrayList<>();
         list.add("Some element on list.");
-        List<Object> listToAdd = new MyOwnArray<>();
+        List<Object> listToAdd = new ArrayList<>();
         listToAdd.add("Some element od list to add.");
         listToAdd.add("Another element od list to add.");
         //when
@@ -126,7 +126,7 @@ public class ArrayListTest {
     @Test
     public void shouldRemoveAllElements() {
         //given
-        List<Object> list = new MyOwnArray<>();
+        List<Object> list = new ArrayList<>();
         Object element = "some element";
         //when
         list.add(element);
@@ -139,7 +139,7 @@ public class ArrayListTest {
     @Test
     public void shouldReturnCorrectElementFromGivenIndex() {
         //given
-        List<Object> list = new MyOwnArray<>();
+        List<Object> list = new ArrayList<>();
         //when
         list.add("some element");
         list.add("another element");
@@ -151,7 +151,7 @@ public class ArrayListTest {
     @Test
     public void shouldReplaceElementOnGivenIndex() {
         //given
-        List<Object> list = new MyOwnArray<>();
+        List<Object> list = new ArrayList<>();
         Object oldElement = "old element";
         Object newElement = "new element";
         //when
@@ -163,7 +163,7 @@ public class ArrayListTest {
     @Test
     public void shouldAddElementOnGivenIndex() {
         //given
-        List<Object> list = new MyOwnArray<>();
+        List<Object> list = new ArrayList<>();
         Object element = "some element";
         Object newElement = "new element";
         //when
@@ -176,7 +176,7 @@ public class ArrayListTest {
     @Test
     public void shouldRemoveElementFromFromGivenIndex() {
         //given
-        List<Object> list = new MyOwnArray<>();
+        List<Object> list = new ArrayList<>();
         Object element = "some element";
         Object anotheElement = "another element";
         Object yetAnotheElement = "yet another element";
@@ -192,7 +192,7 @@ public class ArrayListTest {
     @Test
     public void shouldReturnCorrectIndexOfGivenElement() {
         //given
-        List<Object> list = new MyOwnArray<>();
+        List<Object> list = new ArrayList<>();
         Object element = "some element";
         Object anotheElement = "another element";
         Object yetAnotheElement = "yet another element";
@@ -207,7 +207,7 @@ public class ArrayListTest {
     @Test
     public void shouldReturnLastIndexOfGivenElement() {
         //given
-        List<Object> list = new MyOwnArray<>();
+        List<Object> list = new ArrayList<>();
         Object element = "some element";
         Object anotherElement = "another element";
         //when
