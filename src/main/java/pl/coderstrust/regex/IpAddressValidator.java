@@ -8,7 +8,7 @@ public class IpAddressValidator {
 
     public static boolean isIpAddress(String input) {
         if (input == null) {
-            throw new IllegalArgumentException("Line cannot be null.");
+            throw new IllegalArgumentException("Input cannot be null.");
         }
         return pattern.matcher(input).matches();
     }

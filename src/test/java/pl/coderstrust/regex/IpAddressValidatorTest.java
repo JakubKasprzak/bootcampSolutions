@@ -38,7 +38,7 @@ class IpAddressValidatorTest {
     @Test
     void shouldThrowExceptionForNullAsInput() {
         IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> IpAddressValidator.isIpAddress(null));
-        assertEquals("Line cannot be null.", thrown.getMessage());
+        assertEquals("Input cannot be null.", thrown.getMessage());
     }
 
     @ParameterizedTest
