@@ -7,7 +7,6 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Processor {
     private NumbersProcessor numbersProcessor;
@@ -41,28 +40,27 @@ public class Processor {
         if (resultFilePath == null) {
             throw new IllegalArgumentException("Result file path cannot be null.");
         }
-        Path path = Paths.get(inputFilePath);
-        List<Stream> linesFromFile = Files.lines(path)
+        Path inputPath = Paths.get(inputFilePath);
+        Path resultPath = Paths.get(resultFilePath);
+        List<String> linesFromFile = Files.lines(inputPath)
                 .filter(line -> line.matches("^[\\d\\s]+"))
-//                .map(line -> numbersProcessor.processLine(line))
                 .map(line -> line.split("\\s+"))
-                .map(Arrays::stream)
-                .map(line -> line.reduce())
-
+                .map(arrayOfNumbers -> Arrays.stream(arrayOfNumbers).reduce((num1, num2) -> String.format("%s+%s", num1, num2)))
                 .collect(Collectors.toList());
 
+//        Arrays.stream(arrayOfNumbers).reduce((num1, num2) -> String.format("%s+%s", num1, num2)))
 
-        System.out.println(linesFromFile.toString());
+        System.out.println(linesFromFile);
+//        Files.write(resultPath, linesFromFile, StandardCharsets.UTF_8);
 
+        //                .map(line -> Arrays.stream(line.toString().split(",")))
         //                .Arrays.stream(line.toString().split(","))
-
 
         //ściągnij plugin save actions
         //map to zamiana obiektu w inny np. typ integer zmienia na stringi, map nie kończy streama
         //filter przepuszcza tylko obiekty które spełniają warunek
         //forEach musi być na końcu
         //collect też na końcu
-
 
 //        List list = linesFromFile.forEach(line -> {
 //                    Arrays.stream(line.toString().split(","))
@@ -71,7 +69,6 @@ public class Processor {
 //                }
 //        )));
 //        System.out.println(linesFromFile.toArray().toString());
-
 
 //        List<String> linesFromFile = fileProcessor.readLinesFromFile(inputFilePath);
 //                List< String > resultLines = new ArrayList<>();
