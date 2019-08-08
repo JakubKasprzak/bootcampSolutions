@@ -1,6 +1,12 @@
 package pl.coderstrust.myownarraylist;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.ConcurrentModificationException;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.NoSuchElementException;
 
 class ArrayList<T> implements List<T> {
     private Object[] values;
@@ -61,7 +67,7 @@ class ArrayList<T> implements List<T> {
 
     @Override
     public <T1> T1[] toArray(T1[] a) {
-        throw new UnsupportedOperationException("Invalid operation for this array list.");
+        throw new UnsupportedOperationException("Unsupported operation for this array list.");
     }
 
     @Override
@@ -85,38 +91,39 @@ class ArrayList<T> implements List<T> {
 
     @Override
     public boolean containsAll(Collection<?> c) {
-        throw new UnsupportedOperationException("Invalid operation for this array list.");
+        throw new UnsupportedOperationException("Unsupported operation for this array list.");
     }
 
     @Override
     public boolean addAll(Collection<? extends T> c) {
+        resize();
         Object[] addedCollection = c.toArray();
-        int sizeOfaddedCollection = addedCollection.length;
-        if (sizeOfaddedCollection == 0) {
+        int sizeOfAddedCollection = addedCollection.length;
+        if (sizeOfAddedCollection == 0) {
             return false;
         }
         Object[] oldList = values;
-        if (sizeOfaddedCollection > values.length - numberOfElements) {
-            values = Arrays.copyOf(oldList, numberOfElements + sizeOfaddedCollection);
+        if (sizeOfAddedCollection > values.length - numberOfElements) {
+            values = Arrays.copyOf(oldList, numberOfElements + sizeOfAddedCollection);
         }
-        System.arraycopy(addedCollection, 0, oldList, numberOfElements, sizeOfaddedCollection);
-        numberOfElements = numberOfElements + sizeOfaddedCollection;
+        System.arraycopy(addedCollection, 0, oldList, numberOfElements, sizeOfAddedCollection);
+        numberOfElements = numberOfElements + sizeOfAddedCollection;
         return true;
     }
 
     @Override
     public boolean addAll(int index, Collection<? extends T> c) {
-        throw new UnsupportedOperationException("Invalid operation for this array list.");
+        throw new UnsupportedOperationException("Unsupported operation for this array list.");
     }
 
     @Override
     public boolean removeAll(Collection<?> c) {
-        throw new UnsupportedOperationException("Invalid operation for this array list.");
+        throw new UnsupportedOperationException("Unsupported operation for this array list.");
     }
 
     @Override
     public boolean retainAll(Collection<?> c) {
-        throw new UnsupportedOperationException("Invalid operation for this array list.");
+        throw new UnsupportedOperationException("Unsupported operation for this array list.");
     }
 
     @Override
@@ -159,6 +166,7 @@ class ArrayList<T> implements List<T> {
 
     @Override
     public T remove(int index) {
+        resize();
         if (index > numberOfElements) {
             throw new IndexOutOfBoundsException();
         }
@@ -199,21 +207,21 @@ class ArrayList<T> implements List<T> {
 
     @Override
     public ListIterator<T> listIterator() {
-        throw new UnsupportedOperationException("Invalid operation for this array list.");
+        throw new UnsupportedOperationException("Unsupported operation for this array list.");
     }
 
     @Override
     public ListIterator<T> listIterator(int index) {
-        throw new UnsupportedOperationException("Invalid operation for this array list.");
+        throw new UnsupportedOperationException("Unsupported operation for this array list.");
     }
 
     @Override
     public List<T> subList(int fromIndex, int toIndex) {
-        throw new UnsupportedOperationException("Invalid operation for this array list.");
+        throw new UnsupportedOperationException("Unsupported operation for this array list.");
     }
 
     private void resize() {
-        if (numberOfElements >= values.length) {
+        if (numberOfElements == values.length) {
             Object[] newObjects = new Object[numberOfElements * 2];
             System.arraycopy(values, 0, newObjects, 0, numberOfElements);
             values = newObjects;
