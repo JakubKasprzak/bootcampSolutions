@@ -10,17 +10,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Processor {
-
-    public static void main(String[] args) throws IOException {
-        String inputFilePath = "src/test/resources/1000.txt";
-        Path inputPath = Paths.get(inputFilePath);
-        String resultFilePath = "src/test/resources/output.txt";
-        Path resultPath = Paths.get(resultFilePath);
-        process(inputPath, resultPath);
-
-
-    }
-
     private NumbersProcessor numbersProcessor;
     private FileProcessor fileProcessor;
 
@@ -35,20 +24,37 @@ public class Processor {
         this.fileProcessor = fileProcessor;
     }
 
-    public void process(Path inputFilePath, Path resultFilePath) throws IOException {
+    static public void main(String[] args) throws IOException {
+        String inputFile = "src/test/resources/1000.txt";
+        String outputFile = "src/test/resources/output.txt";
+        String expectedFile = "src/test/resources/expected.txt";
+        NumbersProcessor numbersProcessor = new NumbersProcessor();
+        FileProcessor fileProcessor = new FileProcessor();
+        Processor processor = new Processor(numbersProcessor, fileProcessor);
+        processor.process(inputFile, outputFile);
+    }
+
+    public void process(String inputFilePath, String resultFilePath) throws IOException {
         if (inputFilePath == null) {
             throw new IllegalArgumentException("Input file path cannot be null.");
         }
         if (resultFilePath == null) {
             throw new IllegalArgumentException("Result file path cannot be null.");
         }
-
-        List<String> linesFromFile = Files.lines(inputFilePath)
+        Path path = Paths.get(inputFilePath);
+        List<Stream> linesFromFile = Files.lines(path)
                 .filter(line -> line.matches("^[\\d\\s]+"))
-                .map(String::trim)
-                .map(line -> numbersProcessor.processLine(line))
-//                .Arrays.stream(line.toString().split(","))
+//                .map(line -> numbersProcessor.processLine(line))
+                .map(line -> line.split("\\s+"))
+                .map(Arrays::stream)
+                .map(line -> line.reduce())
+
                 .collect(Collectors.toList());
+
+
+        System.out.println(linesFromFile.toString());
+
+        //                .Arrays.stream(line.toString().split(","))
 
 
         //ściągnij plugin save actions
@@ -58,13 +64,13 @@ public class Processor {
         //collect też na końcu
 
 
-        List list = linesFromFile.forEach(line -> {
-                    Arrays.stream(line.toString().split(","))
-                            .map(String::trim)
-                            .toArray(String[]::new);
-                }
-        )));
-        System.out.println(linesFromFile.toArray().toString());
+//        List list = linesFromFile.forEach(line -> {
+//                    Arrays.stream(line.toString().split(","))
+//                            .map(String::trim)
+//                            .toArray(String[]::new);
+//                }
+//        )));
+//        System.out.println(linesFromFile.toArray().toString());
 
 
 //        List<String> linesFromFile = fileProcessor.readLinesFromFile(inputFilePath);
