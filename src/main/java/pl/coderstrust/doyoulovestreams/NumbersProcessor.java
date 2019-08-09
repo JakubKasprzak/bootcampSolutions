@@ -1,4 +1,4 @@
-package pl.coderstrust.doYouLoveStreams;
+package pl.coderstrust.doyoulovestreams;
 
 import java.util.Scanner;
 

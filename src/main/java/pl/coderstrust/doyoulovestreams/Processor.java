@@ -1,4 +1,4 @@
-package pl.coderstrust.doYouLoveStreams;
+package pl.coderstrust.doyoulovestreams;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -44,8 +44,16 @@ public class Processor {
         Path resultPath = Paths.get(resultFilePath);
         List<String> linesFromFile = Files.lines(inputPath)
                 .filter(line -> line.matches("^[\\d\\s]+"))
-                .map(line -> line.split("\\s+"))
-                .map(arrayOfNumbers -> Arrays.stream(arrayOfNumbers).reduce((num1, num2) -> String.format("%s+%s", num1, num2)))
+                //poczytać
+                //what exacly lambda is
+                .map(line -> line.trim().split("\\s+")) //niech ta zwraca array
+                .map(arrayOfNumbers -> {
+                            //how to sum numbers in stream
+//                    Arrays.stream(arrayOfNumbers).reduce
+                            return Arrays.stream(arrayOfNumbers).reduce((num1, num2) -> String.format("%s+%s", num1, num2)).get().concat("=");
+                            //użyc metody concut do połączenia stringa powyżej z sumą
+                        }
+                )
                 .collect(Collectors.toList());
 
 //        Arrays.stream(arrayOfNumbers).reduce((num1, num2) -> String.format("%s+%s", num1, num2)))
