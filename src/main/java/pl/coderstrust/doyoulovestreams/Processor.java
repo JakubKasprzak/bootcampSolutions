@@ -1,13 +1,12 @@
 package pl.coderstrust.doyoulovestreams;
 
+import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
+import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class Processor {
 
@@ -19,20 +18,22 @@ public class Processor {
             throw new IllegalArgumentException("Result file path cannot be null.");
         }
         Path inputPath = Paths.get(inputFilePath);
-        Path resultPath = Paths.get(resultFilePath);
-        List<String> linesFromFile = Files.lines(inputPath)
-                .filter(line -> line.matches("^[\\d\\s]+"))
+        FileWriter fileWriter = new FileWriter(resultFilePath);
+        PrintWriter printWriter = new PrintWriter(fileWriter);
+        Files.lines(inputPath)
+                .filter(line -> line.matches("^[\\d\\s]+$"))
                 .map(line -> line.trim().split("\\s+"))
-                .map(arrayOfNumbers -> {
-                            int sum = Arrays.asList(arrayOfNumbers).stream().mapToInt(Integer::valueOf).sum();
-                            return Arrays.stream(arrayOfNumbers)
-                                    .reduce((num1, num2) -> String.format("%s+%s", num1, num2))
-                                    .get()
-                                    .concat("=")
-                                    .concat(Integer.toString(sum));
-                        }
-                )
-                .collect(Collectors.toList());
-        Files.write(resultPath, linesFromFile, StandardCharsets.UTF_8);
+                .map(Processor::convert)
+                .forEach(printWriter::println);
+        printWriter.close();
+    }
+
+    private static String convert(String[] array) {
+        int sum = Arrays.stream(array).mapToInt(Integer::valueOf).sum();
+        return Arrays.stream(array)
+                .reduce((num1, num2) -> String.format("%s+%s", num1, num2))
+                .get()
+                .concat("=")
+                .concat(Integer.toString(sum));
     }
 }
