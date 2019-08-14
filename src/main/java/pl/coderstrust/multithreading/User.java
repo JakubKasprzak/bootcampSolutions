@@ -5,7 +5,7 @@ import java.util.List;
 
 class User {
    private List<Object> list = new LinkedList<>();
-    private final int CAPCITY = 10;
+    private final int CAPACITY = 10;
 
     void produce(Object element) throws InterruptedException {
         while (true) {
