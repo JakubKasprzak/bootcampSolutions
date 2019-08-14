@@ -11,10 +11,10 @@ import java.util.NoSuchElementException;
 class ArrayList<T> implements List<T> {
     private Object[] values;
     private int numberOfElements = 0;
-    private final static int CAPACITY = 10;
+    private final static int DEFAULT_CAPACITY = 10;
 
     public ArrayList() {
-        values = new Object[CAPACITY];
+        values = new Object[DEFAULT_CAPACITY];
     }
 
     @Override
@@ -35,8 +35,8 @@ class ArrayList<T> implements List<T> {
     @Override
     public Iterator<T> iterator() {
         return new Iterator<T>() {
-            int nextToRetIndex;       // index of next element to return
-            int lastRet = -1; // index of last element returned; -1 if no such
+            int nextToRetIndex;
+            int lastRet = -1;
 
             @Override
             public boolean hasNext() {
@@ -226,7 +226,7 @@ class ArrayList<T> implements List<T> {
             System.arraycopy(values, 0, newObjects, 0, numberOfElements);
             values = newObjects;
         }
-        if (numberOfElements >= CAPACITY && numberOfElements < values.length / 4) {
+        if (numberOfElements >= DEFAULT_CAPACITY && numberOfElements < values.length / 4) {
             Object[] newObjects = new Object[numberOfElements / 2];
             System.arraycopy(values, 0, newObjects, 0, numberOfElements);
             values = newObjects;
