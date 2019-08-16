@@ -1,4 +1,4 @@
-package pl.coderstrust.doyoulovestreams;
+package pl.coderstrust.numbers;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -8,7 +8,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
-public class Processor {
+public class StreamProcessor {
 
     public void process(String inputFilePath, String resultFilePath) throws IOException {
         if (inputFilePath == null) {
@@ -18,14 +18,13 @@ public class Processor {
             throw new IllegalArgumentException("Result file path cannot be null.");
         }
         Path inputPath = Paths.get(inputFilePath);
-        FileWriter fileWriter = new FileWriter(resultFilePath);
-        PrintWriter printWriter = new PrintWriter(fileWriter);
-        Files.lines(inputPath)
-                .filter(line -> line.matches("^[\\d\\s]+$"))
-                .map(line -> line.trim().split("\\s+"))
-                .map(Processor::convert)
-                .forEach(printWriter::println);
-        printWriter.close();
+        try (PrintWriter printWriter = new PrintWriter(new FileWriter(resultFilePath))) {
+            Files.lines(inputPath)
+                    .filter(line -> line.matches("^[\\d\\s]+$"))
+                    .map(line -> line.trim().split("\\s+"))
+                    .map(StreamProcessor::convert)
+                    .forEach(printWriter::println);
+        }
     }
 
     private static String convert(String[] array) {

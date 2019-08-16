@@ -1,4 +1,4 @@
-package pl.coderstrust.doyoulovestreams;
+package pl.coderstrust.numbers;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,12 +9,12 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-class ProcessorTest {
-    private Processor processor;
+class StreamProcessorTest {
+    private StreamProcessor streamProcessor;
 
     @BeforeEach
     void setup() {
-        processor = new Processor();
+        streamProcessor = new StreamProcessor();
     }
 
     @Test
@@ -26,7 +26,7 @@ class ProcessorTest {
         String expectedFile = "src/test/resources/expected2.txt";
 
         //when
-        processor.process(inputFile, outputFile);
+        streamProcessor.process(inputFile, outputFile);
 
         //then
         byte[] expected = Files.readAllBytes(Paths.get(expectedFile));
