@@ -1,4 +1,4 @@
-package pl.coderstrust.hoarePartition;
+package pl.coderstrust.hoarepartition;
 
 import java.util.Arrays;
 
